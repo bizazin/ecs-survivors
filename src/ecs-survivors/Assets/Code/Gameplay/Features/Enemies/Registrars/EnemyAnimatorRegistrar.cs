@@ -1,5 +1,5 @@
 ﻿using Code.Gameplay.Features.Enemies.Behaviours;
-using Code.Infrastructure.View.Registrars;
+using Code.Infrastructure.Views.Registrars;
 
 namespace Code.Gameplay.Features.Enemies.Registrars
 {

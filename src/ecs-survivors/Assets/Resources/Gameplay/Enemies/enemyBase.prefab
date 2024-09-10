@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 617389096671023428}
   - component: {fileID: 5533814069602399775}
   - component: {fileID: 2782061439451436813}
-  - component: {fileID: 5983895557878050439}
   m_Layer: 0
   m_Name: enemyBase
   m_TagString: Untagged
@@ -91,19 +90,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityView: {fileID: 7576032903396103957}
   SpriteRenderer: {fileID: 0}
---- !u!114 &5983895557878050439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439855031686531578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cad9c9ec6de438985122675ba659bdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EntityView: {fileID: 7576032903396103957}
 --- !u!1 &3126144766799759099
 GameObject:
   m_ObjectHideFlags: 0

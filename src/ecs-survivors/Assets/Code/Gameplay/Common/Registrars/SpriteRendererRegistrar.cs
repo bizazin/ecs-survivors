@@ -1,4 +1,4 @@
-﻿using Code.Infrastructure.View.Registrars;
+﻿using Code.Infrastructure.Views.Registrars;
 using UnityEngine;
 
 namespace Code.Gameplay.Common.Registrars

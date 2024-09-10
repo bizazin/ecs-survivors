@@ -1,5 +1,4 @@
-﻿using Code.Gameplay.Cameras.Provider;
-using Code.Gameplay.Cameras.Systems;
+﻿using Code.Gameplay.Cameras.Systems;
 using Code.Gameplay.Features.Hero.Systems;
 using Code.Infrastructure.Systems;
 
@@ -9,9 +8,13 @@ namespace Code.Gameplay.Features.Hero
     {
         public HeroFeature(ISystemFactory systems)
         {
-            Add(systems.Create<SetHeroDirectionByInput>());
+            Add(systems.Create<InitializeHeroSystem>());
+            
+            Add(systems.Create<SetHeroDirectionByInputSystem>());
             Add(systems.Create<CameraFollowHeroSystem>());
-            Add(systems.Create<AnimateHeroMovement>());
+            Add(systems.Create<AnimateHeroMoveSystem>());
+            Add(systems.Create<HeroDeathSystem>());
+            Add(systems.Create<FinalizeHeroDeathProcessingSystem>());
         }
     }
 }
