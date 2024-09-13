@@ -200,6 +200,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5533814069602399775, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
+      propertyPath: EnemyAnimator
+      value: 
+      objectReference: {fileID: 357553608417064001}
     m_RemovedComponents:
     - {fileID: 6856359518670333204, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
     - {fileID: 2902833281619657816, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
@@ -213,6 +217,17 @@ PrefabInstance:
       addedObject: {fileID: 8340934959743815178}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
+--- !u!114 &357553608417064001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3082643152100645119, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
+  m_PrefabInstance: {fileID: 3328712635861724350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d936e6fa230a4a38a53ff6ae046901e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3364866181197663004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 37033163526465442, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}

@@ -1,5 +1,6 @@
 ﻿using Code.Gameplay.Features.Movement.Systems;
 using Code.Infrastructure.Systems;
+using UnityEngine.UIElements;
 
 namespace Code.Gameplay.Features.Movement
 {
@@ -11,6 +12,7 @@ namespace Code.Gameplay.Features.Movement
             
             Add(systems.Create<TurnAlongDirectionSystem>());
             Add(systems.Create<UpdateTransformPositionSystem>());
+            Add(systems.Create<RotateAlongDirectionSystem>());
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Code.Gameplay.Features.Enemies.Registrars
         public override void RegisterComponents()
         {
             Entity
+                .AddDamageTakenAnimator(EnemyAnimator)
                 .AddEnemyAnimator(EnemyAnimator);
         }
 
@@ -17,6 +18,9 @@ namespace Code.Gameplay.Features.Enemies.Registrars
         {
             if (Entity.hasEnemyAnimator)
                 Entity.RemoveEnemyAnimator();
+            
+            if (Entity.hasDamageTakenAnimator)
+                Entity.RemoveDamageTakenAnimator();
         }
     }
 }
