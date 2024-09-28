@@ -1,3 +1,4 @@
+using Code.Common.EntityIndices;
 using Code.Gameplay.Cameras.Provider;
 using Code.Gameplay.Common.Collisions;
 using Code.Gameplay.Common.Physics;
@@ -6,8 +7,11 @@ using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Armaments.Factory;
+using Code.Gameplay.Features.Effects.Factory;
 using Code.Gameplay.Features.Enemies.Factory;
 using Code.Gameplay.Features.Hero.Factory;
+using Code.Gameplay.Features.Statuses.Applier;
+using Code.Gameplay.Features.Statuses.Factory;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Levels;
 using Code.Gameplay.StaticData;
@@ -15,8 +19,10 @@ using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.Identifiers;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.Systems;
-using Code.Infrastructure.Views.Factory;
+using Code.Infrastructure.View.Factory;
+using Unity.VisualScripting;
 using Zenject;
+using IInitializable = Zenject.IInitializable;
 
 namespace Code.Infrastructure.Installers
 {
@@ -39,6 +45,7 @@ namespace Code.Infrastructure.Installers
             BindContexts();
             BindGameplayServices();
             BindCameraProvider();
+            BindEntityIndices();
         }
 
         private void BindContexts()
@@ -57,6 +64,7 @@ namespace Code.Infrastructure.Installers
         {
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
             Container.Bind<ILevelDataProvider>().To<LevelDataProvider>().AsSingle();
+            Container.Bind<IStatusApplier>().To<StatusApplier>().AsSingle();
         }
 
         private void BindInfrastructureServices()
@@ -86,6 +94,13 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
             Container.Bind<IArmamentFactory>().To<ArmamentFactory>().AsSingle();
             Container.Bind<IAbilityFactory>().To<AbilityFactory>().AsSingle();
+            Container.Bind<IEffectFactory>().To<EffectFactory>().AsSingle();
+            Container.Bind<IStatusFactory>().To<StatusFactory>().AsSingle();
+        }
+
+        private void BindEntityIndices()
+        {
+            Container.BindInterfacesAndSelfTo<GameEntityIndices>().AsSingle();
         }
 
         private void BindSystemFactory() => 

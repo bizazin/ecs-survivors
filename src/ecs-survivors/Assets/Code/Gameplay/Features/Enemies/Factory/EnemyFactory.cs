@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Effects;
 using Code.Infrastructure.Identifiers;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ namespace Code.Gameplay.Features.Enemies.Factory
                 .AddSpeed(1)
                 .AddCurrentHP(3)
                 .AddMaxHP(3)
-                .AddDamage(1)
+                .AddEffectSetups(new List<EffectSetup>(){new(){EffectTypeId = EffectTypeId.Damage, Value = 1}})
                 .AddTargetsBuffer(new List<int>(1))
                 .AddRadius(0.3f)
                 .AddCollectTargetsTimer(0)

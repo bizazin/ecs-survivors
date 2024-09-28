@@ -1,4 +1,4 @@
-﻿using Code.Infrastructure.Views;
+﻿using Code.Infrastructure.View;
 using Entitas;
 
 namespace Code.Common

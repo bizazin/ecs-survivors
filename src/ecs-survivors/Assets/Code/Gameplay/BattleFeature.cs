@@ -2,15 +2,20 @@
 using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Armaments;
 using Code.Gameplay.Features.Armaments.Factory;
-using Code.Gameplay.Features.DamageApplication;
+using Code.Gameplay.Features.EffectApplication;
+using Code.Gameplay.Features.Effects;
+using Code.Gameplay.Features.Effects.Factory;
 using Code.Gameplay.Features.Enemies;
 using Code.Gameplay.Features.Hero;
+using Code.Gameplay.Features.Lifetime;
 using Code.Gameplay.Features.Lifetime.Systems;
 using Code.Gameplay.Features.Movement;
+using Code.Gameplay.Features.Statuses;
+using Code.Gameplay.Features.Statuses.Systems;
 using Code.Gameplay.Features.TargetCollection;
 using Code.Gameplay.Input;
 using Code.Infrastructure.Systems;
-using Code.Infrastructure.Views;
+using Code.Infrastructure.View;
 
 namespace Code.Gameplay
 {
@@ -31,7 +36,10 @@ namespace Code.Gameplay
             Add(systems.Create<ArmamentFeature>());
             
             Add(systems.Create<CollectTargetsFeature>());
-            Add(systems.Create<DamageApplicationFeature>());
+            Add(systems.Create<EffectApplicationFeature>());
+            
+            Add(systems.Create<EffectFeature>());
+            Add(systems.Create<StatusFeature>());
             
             Add(systems.Create<ProcessDestructedFeature>());
         }

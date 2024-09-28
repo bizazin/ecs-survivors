@@ -1,5 +1,5 @@
 ﻿using Code.Gameplay.Features.Hero.Behaviours;
-using Code.Infrastructure.Views.Registrars;
+using Code.Infrastructure.View.Registrars;
 
 namespace Code.Gameplay.Features.Hero.Registrars
 {
