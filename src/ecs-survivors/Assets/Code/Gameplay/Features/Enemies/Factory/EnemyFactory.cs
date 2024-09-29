@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.CharacterStats;
 using Code.Gameplay.Features.Effects;
 using Code.Infrastructure.Identifiers;
 using UnityEngine;
@@ -28,16 +29,24 @@ namespace Code.Gameplay.Features.Enemies.Factory
             throw new Exception($"Enemy with typeId {typeId} does not exist");
         }
 
-        private GameEntity CreateGoblin(Vector3 at) =>
-            CreateEntity.Empty()
+        private GameEntity CreateGoblin(Vector3 at)
+        {
+            Dictionary<Stats, float> baseStats = InitStats.EmptyStatDictionary()
+                .With(x => x[Stats.Speed] = 1)
+                .With(x => x[Stats.MaxHp] = 3)
+                .With(x => x[Stats.Damage] = 1);
+            
+            return CreateEntity.Empty()
                 .AddId(_identifiers.Next())
                 .AddEnemyTypeId(EnemyTypeId.Goblin)
                 .AddWorldPosition(at)
                 .AddDirection(Vector2.zero)
-                .AddSpeed(1)
-                .AddCurrentHP(3)
-                .AddMaxHP(3)
-                .AddEffectSetups(new List<EffectSetup>(){new(){EffectTypeId = EffectTypeId.Damage, Value = 1}})
+                .AddBaseStats(baseStats)
+                .AddStatModifiers(InitStats.EmptyStatDictionary())
+                .AddSpeed(baseStats[Stats.Speed])
+                .AddCurrentHP(baseStats[Stats.MaxHp])
+                .AddMaxHP(baseStats[Stats.MaxHp])
+                .AddEffectSetups(new List<EffectSetup>() { new() { EffectTypeId = EffectTypeId.Damage, Value = baseStats[Stats.Damage] } })
                 .AddTargetsBuffer(new List<int>(1))
                 .AddRadius(0.3f)
                 .AddCollectTargetsTimer(0)
@@ -47,5 +56,6 @@ namespace Code.Gameplay.Features.Enemies.Factory
                 .With(x => x.isEnemy = true)
                 .With(x => x.isMovementAvailable = true)
                 .With(x => x.isTurnedAlongDirection = true);
+        }
     }
 }
