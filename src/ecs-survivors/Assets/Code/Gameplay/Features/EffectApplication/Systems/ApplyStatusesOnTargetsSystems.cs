@@ -26,11 +26,11 @@ namespace Code.Gameplay.Features.EffectApplication.Systems
         public void Execute()
         {
             foreach (GameEntity entity in _entities)
-                foreach (int targetId in entity.TargetsBuffer)
-                    foreach (StatusSetup setup in entity.StatusSetups)
-                    {
-                        _statusApplier.ApplyStatus(setup, ProducerId(entity), targetId);
-                    }
+            foreach (int targetId in entity.TargetsBuffer)
+            foreach (StatusSetup setup in entity.StatusSetups)
+            {
+                _statusApplier.ApplyStatus(setup, ProducerId(entity), targetId);
+            }
         }
 
         private int ProducerId(GameEntity entity) => 

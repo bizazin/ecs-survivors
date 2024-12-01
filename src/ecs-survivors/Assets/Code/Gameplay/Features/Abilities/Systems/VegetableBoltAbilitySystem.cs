@@ -21,6 +21,7 @@ namespace Code.Gameplay.Features.Abilities.Systems
         {
             _staticDataService = staticDataService;
             _armamentFactory = armamentFactory;
+            
             _abilities = game.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.VegetableBoltAbility,
@@ -40,20 +41,20 @@ namespace Code.Gameplay.Features.Abilities.Systems
         public void Execute()
         {
             foreach (GameEntity ability in _abilities.GetEntities(_buffer))
-                foreach (GameEntity hero in _heroes)
-                {
-                    if (_enemies.count == 0)
-                        return;
-                    
-                    _armamentFactory
-                        .CreateVegetableBolt(1, hero.WorldPosition)
-                        .AddProducerId(hero.Id)
-                        .ReplaceDirection((FirstAvailableTarget().WorldPosition - hero.WorldPosition).normalized)
-                        .With(x => x.isMoving = true);
-                    
-                    ability
-                        .PutOnCooldown(_staticDataService.GetAbilityLevel(AbilityId.VegetableBolt, 1).Cooldown);
-                }
+            foreach (GameEntity hero in _heroes)
+            {
+                if (_enemies.count == 0)
+                    return;
+                
+                _armamentFactory
+                    .CreateVegetableBolt(1, hero.WorldPosition)
+                    .AddProducerId(hero.Id)
+                    .ReplaceDirection((FirstAvailableTarget().WorldPosition - hero.WorldPosition).normalized)
+                    .With(x => x.isMoving = true);
+                
+                ability
+                    .PutOnCooldown(_staticDataService.GetAbilityLevel(AbilityId.VegetableBolt, 1).Cooldown);
+            }
         }
 
         private GameEntity FirstAvailableTarget() => 

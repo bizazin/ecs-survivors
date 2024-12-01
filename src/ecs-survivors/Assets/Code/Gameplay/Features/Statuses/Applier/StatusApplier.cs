@@ -21,9 +21,9 @@ namespace Code.Gameplay.Features.Statuses.Applier
             GameEntity status = _game.TargetStatusesOfType(setup.StatusTypeId, targetId).FirstOrDefault();
             if (status != null)
                 return status.ReplaceTimeLeft(status.Duration);
-            else
-                return _statusFactory.CreateStatus(setup, producerId, targetId)
-                    .With(x => x.isApplied = true);
+            
+            return _statusFactory.CreateStatus(setup, producerId, targetId)
+                .With(x => x.isApplied = true);
         }
     }
 }

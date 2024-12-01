@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Abilities.Configs
 {
-    [CreateAssetMenu(menuName = "ECS Survivors", fileName = "abilityConfig", order = 0)]
+    [CreateAssetMenu(menuName = "ECS Survivors/Ability Config", fileName = "abilityConfig", order = 0)]
     public class AbilityConfig : ScriptableObject
     {
         public AbilityId AbilityId;

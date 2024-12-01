@@ -4,12 +4,10 @@ namespace Code.Gameplay.Features.Effects.Systems
 {
     public class ProcessDamageEffectSystem : IExecuteSystem
     {
-        private readonly GameContext _game;
         private readonly IGroup<GameEntity> _effects;
 
         public ProcessDamageEffectSystem(GameContext game)
         {
-            _game = game;
             _effects = game.GetGroup(GameMatcher
                 .AllOf(
                     GameMatcher.DamageEffect,
