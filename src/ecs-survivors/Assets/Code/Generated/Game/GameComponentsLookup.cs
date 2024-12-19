@@ -45,61 +45,63 @@ public static class GameComponentsLookup {
     public const int HealEffect = 34;
     public const int ProducerId = 35;
     public const int TargetId = 36;
-    public const int EnchantTypeId = 37;
-    public const int EnchantVisuals = 38;
-    public const int ExplosiveEnchant = 39;
-    public const int PoisonEnchant = 40;
-    public const int Enemy = 41;
-    public const int EnemyAnimator = 42;
-    public const int EnemyTypeId = 43;
-    public const int SpawnTimer = 44;
-    public const int Hero = 45;
-    public const int HeroAnimator = 46;
-    public const int CurrentHP = 47;
-    public const int Dead = 48;
-    public const int MaxHP = 49;
-    public const int ProcessingDeath = 50;
-    public const int Collected = 51;
-    public const int Experience = 52;
-    public const int LootTypeId = 53;
-    public const int PickupRadius = 54;
-    public const int Pullable = 55;
-    public const int Pulling = 56;
-    public const int Direction = 57;
-    public const int MovementAvailable = 58;
-    public const int Moving = 59;
-    public const int OrbitCenterFollowTarget = 60;
-    public const int OrbitCenterPosition = 61;
-    public const int OrbitPhase = 62;
-    public const int OrbitRadius = 63;
-    public const int RotationAlignedAlongDirection = 64;
-    public const int Speed = 65;
-    public const int TurnedAlongDirection = 66;
-    public const int Affected = 67;
-    public const int Applied = 68;
-    public const int ApplierStatusLink = 69;
-    public const int Duration = 70;
-    public const int Freeze = 71;
-    public const int Period = 72;
-    public const int Poison = 73;
-    public const int Status = 74;
-    public const int StatusTypeId = 75;
-    public const int TimeLeft = 76;
-    public const int TimeSinceLastTick = 77;
-    public const int Unapplied = 78;
-    public const int CollectingTargetsContinuously = 79;
-    public const int CollectTargetsInterval = 80;
-    public const int CollectTargetsTimer = 81;
-    public const int LayerMask = 82;
-    public const int ProcessedTargets = 83;
-    public const int Radius = 84;
-    public const int Reached = 85;
-    public const int ReadyToCollectTargets = 86;
-    public const int TargetsBuffer = 87;
-    public const int AxisInput = 88;
-    public const int Input = 89;
+    public const int EnchantHolder = 37;
+    public const int EnchantTypeId = 38;
+    public const int EnchantVisuals = 39;
+    public const int ExplosiveEnchant = 40;
+    public const int PoisonEnchant = 41;
+    public const int Enemy = 42;
+    public const int EnemyAnimator = 43;
+    public const int EnemyTypeId = 44;
+    public const int SpawnTimer = 45;
+    public const int Hero = 46;
+    public const int HeroAnimator = 47;
+    public const int ExperienceMeter = 48;
+    public const int CurrentHP = 49;
+    public const int Dead = 50;
+    public const int MaxHP = 51;
+    public const int ProcessingDeath = 52;
+    public const int Collected = 53;
+    public const int Experience = 54;
+    public const int LootTypeId = 55;
+    public const int PickupRadius = 56;
+    public const int Pullable = 57;
+    public const int Pulling = 58;
+    public const int Direction = 59;
+    public const int MovementAvailable = 60;
+    public const int Moving = 61;
+    public const int OrbitCenterFollowTarget = 62;
+    public const int OrbitCenterPosition = 63;
+    public const int OrbitPhase = 64;
+    public const int OrbitRadius = 65;
+    public const int RotationAlignedAlongDirection = 66;
+    public const int Speed = 67;
+    public const int TurnedAlongDirection = 68;
+    public const int Affected = 69;
+    public const int Applied = 70;
+    public const int ApplierStatusLink = 71;
+    public const int Duration = 72;
+    public const int Freeze = 73;
+    public const int Period = 74;
+    public const int Poison = 75;
+    public const int Status = 76;
+    public const int StatusTypeId = 77;
+    public const int TimeLeft = 78;
+    public const int TimeSinceLastTick = 79;
+    public const int Unapplied = 80;
+    public const int CollectingTargetsContinuously = 81;
+    public const int CollectTargetsInterval = 82;
+    public const int CollectTargetsTimer = 83;
+    public const int LayerMask = 84;
+    public const int ProcessedTargets = 85;
+    public const int Radius = 86;
+    public const int Reached = 87;
+    public const int ReadyToCollectTargets = 88;
+    public const int TargetsBuffer = 89;
+    public const int AxisInput = 90;
+    public const int Input = 91;
 
-    public const int TotalComponents = 90;
+    public const int TotalComponents = 92;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -139,6 +141,7 @@ public static class GameComponentsLookup {
         "HealEffect",
         "ProducerId",
         "TargetId",
+        "EnchantHolder",
         "EnchantTypeId",
         "EnchantVisuals",
         "ExplosiveEnchant",
@@ -149,6 +152,7 @@ public static class GameComponentsLookup {
         "SpawnTimer",
         "Hero",
         "HeroAnimator",
+        "ExperienceMeter",
         "CurrentHP",
         "Dead",
         "MaxHP",
@@ -232,6 +236,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Effects.HealEffect),
         typeof(Code.Gameplay.Features.Effects.ProducerId),
         typeof(Code.Gameplay.Features.Effects.TargetId),
+        typeof(Code.Gameplay.Features.Enchants.EnchantHolderComponent),
         typeof(Code.Gameplay.Features.Enchants.EnchantTypeIdComponent),
         typeof(Code.Gameplay.Features.Enchants.EnchantVisualsComponent),
         typeof(Code.Gameplay.Features.Enchants.ExplosiveEnchant),
@@ -242,6 +247,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Enemies.SpawnTimer),
         typeof(Code.Gameplay.Features.Hero.Hero),
         typeof(Code.Gameplay.Features.Hero.HeroAnimatorComponent),
+        typeof(Code.Gameplay.Features.LevelUp.ExperienceMeterComponent),
         typeof(Code.Gameplay.Features.Lifetime.CurrentHP),
         typeof(Code.Gameplay.Features.Lifetime.Dead),
         typeof(Code.Gameplay.Features.Lifetime.MaxHP),
