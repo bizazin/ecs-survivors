@@ -12,12 +12,6 @@ namespace Code.Infrastructure.Installers
         private ICameraProvider _cameraProvider;
         private ILevelDataProvider _levelDataProvider;
 
-        public void Initialize()
-        {
-            _levelDataProvider.SetStartPoint(StartPoint.position);
-            _cameraProvider.SetMainCamera(MainCamera);
-        }
-
         [Inject]
         private void Construct(
             ICameraProvider cameraProvider,
@@ -26,6 +20,12 @@ namespace Code.Infrastructure.Installers
         {
             _levelDataProvider = levelDataProvider;
             _cameraProvider = cameraProvider;
+        }
+
+        public void Initialize()
+        {
+            _levelDataProvider.SetStartPoint(StartPoint.position);
+            _cameraProvider.SetMainCamera(MainCamera);
         }
     }
 }

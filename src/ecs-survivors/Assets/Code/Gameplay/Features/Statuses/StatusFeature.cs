@@ -1,5 +1,4 @@
-﻿using Code.Gameplay.Features.Enchants.Systems;
-using Code.Gameplay.Features.Statuses.Systems;
+﻿using Code.Gameplay.Features.Statuses.Systems;
 using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Statuses
