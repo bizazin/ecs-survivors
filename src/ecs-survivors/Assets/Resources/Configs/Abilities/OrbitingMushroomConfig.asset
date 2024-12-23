@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e747f7522821401b913626f41ef43f61, type: 3}
+  m_Script: {fileID: 11500000, guid: 9833df43fb064a3199752651eaefcfde, type: 3}
   m_Name: OrbitingMushroomConfig
   m_EditorClassIdentifier: 
   AbilityId: 3
@@ -17,7 +17,7 @@ MonoBehaviour:
   - Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
     Description: Adds an orbital mushroom
     Cooldown: 5
-    ViewPrefab: {fileID: 655444590524364987, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    ViewPrefab: {fileID: 6295621220853740386, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
   - Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
     Description: Adds one more orbital mushroom
     Cooldown: 5
-    ViewPrefab: {fileID: 655444590524364987, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    ViewPrefab: {fileID: 6295621220853740386, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
   - Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
     Description: Three orbital mushrooms
     Cooldown: 5
-    ViewPrefab: {fileID: 655444590524364987, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    ViewPrefab: {fileID: 6295621220853740386, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 2
@@ -71,7 +71,7 @@ MonoBehaviour:
   - Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
     Description: Four orbital mushrooms
     Cooldown: 5
-    ViewPrefab: {fileID: 655444590524364987, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    ViewPrefab: {fileID: 6295621220853740386, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 2
@@ -89,7 +89,7 @@ MonoBehaviour:
   - Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
     Description: FIVE glorious orbital mushrooms
     Cooldown: 5
-    ViewPrefab: {fileID: 655444590524364987, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    ViewPrefab: {fileID: 6295621220853740386, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 2

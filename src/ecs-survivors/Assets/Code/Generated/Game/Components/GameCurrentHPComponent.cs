@@ -8,17 +8,17 @@
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherCurrentHP;
+    static Entitas.IMatcher<GameEntity> _matcherCurrentHp;
 
-    public static Entitas.IMatcher<GameEntity> CurrentHP {
+    public static Entitas.IMatcher<GameEntity> CurrentHp {
         get {
-            if (_matcherCurrentHP == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CurrentHP);
+            if (_matcherCurrentHp == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CurrentHp);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherCurrentHP = matcher;
+                _matcherCurrentHp = matcher;
             }
 
-            return _matcherCurrentHP;
+            return _matcherCurrentHp;
         }
     }
 }
@@ -33,28 +33,28 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Lifetime.CurrentHP currentHP { get { return (Code.Gameplay.Features.Lifetime.CurrentHP)GetComponent(GameComponentsLookup.CurrentHP); } }
-    public float CurrentHP { get { return currentHP.Value; } }
-    public bool hasCurrentHP { get { return HasComponent(GameComponentsLookup.CurrentHP); } }
+    public Code.Gameplay.Features.Lifetime.CurrentHp currentHp { get { return (Code.Gameplay.Features.Lifetime.CurrentHp)GetComponent(GameComponentsLookup.CurrentHp); } }
+    public float CurrentHp { get { return currentHp.Value; } }
+    public bool hasCurrentHp { get { return HasComponent(GameComponentsLookup.CurrentHp); } }
 
-    public GameEntity AddCurrentHP(float newValue) {
-        var index = GameComponentsLookup.CurrentHP;
-        var component = (Code.Gameplay.Features.Lifetime.CurrentHP)CreateComponent(index, typeof(Code.Gameplay.Features.Lifetime.CurrentHP));
+    public GameEntity AddCurrentHp(float newValue) {
+        var index = GameComponentsLookup.CurrentHp;
+        var component = (Code.Gameplay.Features.Lifetime.CurrentHp)CreateComponent(index, typeof(Code.Gameplay.Features.Lifetime.CurrentHp));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public GameEntity ReplaceCurrentHP(float newValue) {
-        var index = GameComponentsLookup.CurrentHP;
-        var component = (Code.Gameplay.Features.Lifetime.CurrentHP)CreateComponent(index, typeof(Code.Gameplay.Features.Lifetime.CurrentHP));
+    public GameEntity ReplaceCurrentHp(float newValue) {
+        var index = GameComponentsLookup.CurrentHp;
+        var component = (Code.Gameplay.Features.Lifetime.CurrentHp)CreateComponent(index, typeof(Code.Gameplay.Features.Lifetime.CurrentHp));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
     }
 
-    public GameEntity RemoveCurrentHP() {
-        RemoveComponent(GameComponentsLookup.CurrentHP);
+    public GameEntity RemoveCurrentHp() {
+        RemoveComponent(GameComponentsLookup.CurrentHp);
         return this;
     }
 }

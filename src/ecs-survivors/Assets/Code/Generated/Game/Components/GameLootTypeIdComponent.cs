@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Loot.LootComponents.LootTypeIdComponent lootTypeId { get { return (Code.Gameplay.Features.Loot.LootComponents.LootTypeIdComponent)GetComponent(GameComponentsLookup.LootTypeId); } }
+    public Code.Gameplay.Features.Loot.LootTypeIdComponent lootTypeId { get { return (Code.Gameplay.Features.Loot.LootTypeIdComponent)GetComponent(GameComponentsLookup.LootTypeId); } }
     public Code.Gameplay.Features.Loot.LootTypeId LootTypeId { get { return lootTypeId.Value; } }
     public bool hasLootTypeId { get { return HasComponent(GameComponentsLookup.LootTypeId); } }
 
     public GameEntity AddLootTypeId(Code.Gameplay.Features.Loot.LootTypeId newValue) {
         var index = GameComponentsLookup.LootTypeId;
-        var component = (Code.Gameplay.Features.Loot.LootComponents.LootTypeIdComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootComponents.LootTypeIdComponent));
+        var component = (Code.Gameplay.Features.Loot.LootTypeIdComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceLootTypeId(Code.Gameplay.Features.Loot.LootTypeId newValue) {
         var index = GameComponentsLookup.LootTypeId;
-        var component = (Code.Gameplay.Features.Loot.LootComponents.LootTypeIdComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootComponents.LootTypeIdComponent));
+        var component = (Code.Gameplay.Features.Loot.LootTypeIdComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootTypeIdComponent));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

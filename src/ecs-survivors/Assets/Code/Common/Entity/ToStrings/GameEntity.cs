@@ -11,56 +11,56 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 public sealed partial class GameEntity : INamedEntity
 {
-    private EntityPrinter _printer;
+  private EntityPrinter _printer;
 
-    public string EntityName(IComponent[] components)
+  public override string ToString()
+  {
+    if (_printer == null)
+      _printer = new EntityPrinter(this);
+
+    _printer.InvalidateCache();
+
+    return _printer.BuildToString();
+  }
+
+  public string EntityName(IComponent[] components)
+  {
+    try
     {
-        try
+      if (components.Length == 1)
+        return components[0].GetType().Name;
+
+      foreach (IComponent component in components)
+      {
+        switch (component.GetType().Name)
         {
-            if (components.Length == 1)
-                return components[0].GetType().Name;
+          case nameof(Hero):
+            return PrintHero();
 
-            foreach (var component in components)
-                switch (component.GetType().Name)
-                {
-                    case nameof(Hero):
-                      return PrintHero();
-                    case nameof(Enemy):
-                      return PrintEnemy();
-                }
+          case nameof(Enemy):
+            return PrintEnemy();
         }
-        catch (Exception exception)
-        {
-            Debug.LogError(exception.Message);
-        }
-
-        return components.First().GetType().Name;
+      }
     }
-
-    private string PrintHero()
+    catch (Exception exception)
     {
-      return new StringBuilder($"Hero ")
-        .With(s => s.Append($"Id:{Id}"), when: hasId)
-        .ToString();
-    }
-    
-    private string PrintEnemy() =>
-      new StringBuilder($"Enemy ")
-        .With(s => s.Append($"Id:{Id}"), when: hasId)
-        .ToString();
-
-    public string BaseToString()
-    {
-        return base.ToString();
+      Debug.LogError(exception.Message);
     }
 
-    public override string ToString()
-    {
-        if (_printer == null)
-            _printer = new EntityPrinter(this);
+    return components.First().GetType().Name;
+  }
 
-        _printer.InvalidateCache();
-
-        return _printer.BuildToString();
-    }
+  private string PrintHero()
+  {
+    return new StringBuilder($"Hero ")
+      .With(s => s.Append($"Id:{Id}"), when: hasId)
+      .ToString();
+  }
+  
+  private string PrintEnemy() =>
+    new StringBuilder($"Enemy ")
+      .With(s => s.Append($"Id:{Id}"), when: hasId)
+      .ToString();
+  
+  public string BaseToString() => base.ToString();
 }

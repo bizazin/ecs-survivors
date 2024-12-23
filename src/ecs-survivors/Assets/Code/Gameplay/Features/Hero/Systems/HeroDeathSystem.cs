@@ -1,30 +1,29 @@
-﻿using Entitas;
+using Entitas;
 
 namespace Code.Gameplay.Features.Hero.Systems
 {
-    public class HeroDeathSystem : IExecuteSystem
+  public class HeroDeathSystem : IExecuteSystem
+  {
+    private readonly IGroup<GameEntity> _heroes;
+
+    public HeroDeathSystem(GameContext game)
     {
-        private readonly IGroup<GameEntity> _heroes;
-
-        public HeroDeathSystem(GameContext game)
-        {
-            _heroes = game.GetGroup(GameMatcher
-                .AllOf(
-                    GameMatcher.Hero,
-                    GameMatcher.Dead,
-                    GameMatcher.ProcessingDeath,
-                    GameMatcher.HeroAnimator));
-        }
-
-        public void Execute()
-        {
-            foreach (GameEntity hero in _heroes)
-            {
-                hero.isMovementAvailable = false;
-                hero.isTurnedAlongDirection = false;
-                
-                hero.HeroAnimator.PlayDied();
-            }
-        }
+      _heroes = game.GetGroup(GameMatcher
+        .AllOf(
+          GameMatcher.Hero,
+          GameMatcher.Dead,
+          GameMatcher.HeroAnimator,
+          GameMatcher.ProcessingDeath));
     }
+
+    public void Execute()
+    {
+      foreach (GameEntity hero in _heroes)
+      {
+        hero.isMovementAvailable = false;
+        
+        hero.HeroAnimator.PlayDied();
+      }
+    }
+  }
 }

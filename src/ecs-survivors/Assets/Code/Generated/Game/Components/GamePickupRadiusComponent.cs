@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Loot.LootComponents.PickupRadius pickupRadius { get { return (Code.Gameplay.Features.Loot.LootComponents.PickupRadius)GetComponent(GameComponentsLookup.PickupRadius); } }
+    public Code.Gameplay.Features.Loot.PickupRadius pickupRadius { get { return (Code.Gameplay.Features.Loot.PickupRadius)GetComponent(GameComponentsLookup.PickupRadius); } }
     public float PickupRadius { get { return pickupRadius.Value; } }
     public bool hasPickupRadius { get { return HasComponent(GameComponentsLookup.PickupRadius); } }
 
     public GameEntity AddPickupRadius(float newValue) {
         var index = GameComponentsLookup.PickupRadius;
-        var component = (Code.Gameplay.Features.Loot.LootComponents.PickupRadius)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootComponents.PickupRadius));
+        var component = (Code.Gameplay.Features.Loot.PickupRadius)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.PickupRadius));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplacePickupRadius(float newValue) {
         var index = GameComponentsLookup.PickupRadius;
-        var component = (Code.Gameplay.Features.Loot.LootComponents.PickupRadius)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootComponents.PickupRadius));
+        var component = (Code.Gameplay.Features.Loot.PickupRadius)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.PickupRadius));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

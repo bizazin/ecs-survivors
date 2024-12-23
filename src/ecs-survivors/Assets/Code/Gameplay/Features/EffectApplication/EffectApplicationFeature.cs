@@ -3,12 +3,12 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.EffectApplication
 {
-    public class EffectApplicationFeature : Feature
+  public class EffectApplicationFeature : Feature
+  {
+    public EffectApplicationFeature(ISystemFactory systems)
     {
-        public EffectApplicationFeature(ISystemFactory systems)
-        {
-            Add(systems.Create<ApplyEffectsOnTargetsSystems>());
-            Add(systems.Create<ApplyStatusesOnTargetsSystems>());
-        }
+      Add(systems.Create<ApplyEffectsOnTargetsSystem>());
+      Add(systems.Create<ApplyStatusesOnTargetsSystem>());
     }
+  }
 }

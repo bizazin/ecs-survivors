@@ -33,13 +33,13 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Code.Gameplay.Features.Loot.LootComponents.Experience experience { get { return (Code.Gameplay.Features.Loot.LootComponents.Experience)GetComponent(GameComponentsLookup.Experience); } }
+    public Code.Gameplay.Features.Loot.Experience experience { get { return (Code.Gameplay.Features.Loot.Experience)GetComponent(GameComponentsLookup.Experience); } }
     public float Experience { get { return experience.Value; } }
     public bool hasExperience { get { return HasComponent(GameComponentsLookup.Experience); } }
 
     public GameEntity AddExperience(float newValue) {
         var index = GameComponentsLookup.Experience;
-        var component = (Code.Gameplay.Features.Loot.LootComponents.Experience)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootComponents.Experience));
+        var component = (Code.Gameplay.Features.Loot.Experience)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.Experience));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
@@ -47,7 +47,7 @@ public partial class GameEntity {
 
     public GameEntity ReplaceExperience(float newValue) {
         var index = GameComponentsLookup.Experience;
-        var component = (Code.Gameplay.Features.Loot.LootComponents.Experience)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.LootComponents.Experience));
+        var component = (Code.Gameplay.Features.Loot.Experience)CreateComponent(index, typeof(Code.Gameplay.Features.Loot.Experience));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;

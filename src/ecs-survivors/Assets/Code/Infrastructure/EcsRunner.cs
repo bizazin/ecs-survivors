@@ -8,30 +8,32 @@ using Zenject;
 
 namespace Code.Infrastructure
 {
-    public class EcsRunner : MonoBehaviour
+  public class EcsRunner : MonoBehaviour
+  {
+    private BattleFeature _battleFeature;
+    private ISystemFactory _systemFactory;
+
+    [Inject]
+    private void Construct(ISystemFactory systemFactory)
     {
-        private BattleFeature _battleFeature;
-        private ISystemFactory _systemFactory;
-
-        [Inject]
-        private void Construct(ISystemFactory systems) => 
-            _systemFactory = systems;
-
-        private void Start()
-        {
-            _battleFeature = _systemFactory.Create<BattleFeature>();
-            _battleFeature.Initialize();
-        }
-
-        private void Update()
-        {
-            _battleFeature.Execute();
-            _battleFeature.Cleanup();
-        }
-
-        private void OnDestroy()
-        {
-            _battleFeature.TearDown();
-        }
+      _systemFactory = systemFactory;
     }
+    
+    private void Start()
+    {
+      _battleFeature = _systemFactory.Create<BattleFeature>();
+      _battleFeature.Initialize();
+    }
+
+    private void Update()
+    {
+      _battleFeature.Execute();
+      _battleFeature.Cleanup();
+    }
+
+    private void OnDestroy()
+    {
+      _battleFeature.TearDown();
+    }
+  }
 }

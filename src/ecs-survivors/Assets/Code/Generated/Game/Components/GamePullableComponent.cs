@@ -33,7 +33,7 @@ public sealed partial class GameMatcher {
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly Code.Gameplay.Features.Loot.LootComponents.Pullable pullableComponent = new Code.Gameplay.Features.Loot.LootComponents.Pullable();
+    static readonly Code.Gameplay.Features.Loot.Pullable pullableComponent = new Code.Gameplay.Features.Loot.Pullable();
 
     public bool isPullable {
         get { return HasComponent(GameComponentsLookup.Pullable); }

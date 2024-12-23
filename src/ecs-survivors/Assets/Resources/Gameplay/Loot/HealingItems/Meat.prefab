@@ -274,8 +274,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 967220557584215026}
-  - component: {fileID: 630191317396927003}
-  - component: {fileID: 4646505403143537083}
+  - component: {fileID: 4334772726590348917}
+  - component: {fileID: 7635005182917166772}
   m_Layer: 0
   m_Name: Meat
   m_TagString: Untagged
@@ -300,7 +300,7 @@ Transform:
   - {fileID: 4906907992247152034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &630191317396927003
+--- !u!114 &4334772726590348917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,11 +309,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9189372126830088179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a23de77635402eaf3995228a41bf28, type: 3}
+  m_Script: {fileID: 11500000, guid: 511653e70f1b4434a642cfce8b90ee4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityView: {fileID: 4646505403143537083}
---- !u!114 &4646505403143537083
+--- !u!114 &7635005182917166772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,6 +321,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9189372126830088179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1055a60383495d91c73aa90f21b265, type: 3}
+  m_Script: {fileID: 11500000, guid: a05134c594a6494d9f8c83798b4783ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EntityView: {fileID: 4334772726590348917}

@@ -4,14 +4,16 @@ using Zenject;
 
 namespace Code.Infrastructure.Installers
 {
-    public class SceneInitializationInstaller : MonoInstaller
+  public class SceneInitializationInstaller : MonoInstaller
+  {
+    public List<MonoBehaviour> Initializers;
+    
+    public override void InstallBindings()
     {
-        public List<MonoBehaviour> Initializers;
-
-        public override void InstallBindings()
-        {
-            foreach (var initializer in Initializers)
-                Container.BindInterfacesTo(initializer.GetType()).FromInstance(initializer).AsSingle();
-        }
+      foreach (MonoBehaviour initializer in Initializers)
+      {
+        Container.BindInterfacesTo(initializer.GetType()).FromInstance(initializer).AsSingle();
+      }
     }
+  }
 }

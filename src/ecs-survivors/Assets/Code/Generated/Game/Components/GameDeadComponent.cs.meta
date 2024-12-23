@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 70e652965bb2d054da3fcfb6b48ea59e
+<<<<<<<< HEAD:src/ecs-survivors/Assets/Code/Generated/Game/Components/GameCurrentHPComponent.cs.meta
+guid: 4e9986b0846123f4498f2104238e9434
+========
+guid: 5f57aca5a3a64a846b63e35562c1ab7d
+>>>>>>>> 9662cd2b9c58409da9efd7089caf87f743012497:src/ecs-survivors/Assets/Code/Generated/Game/Components/GameDeadComponent.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

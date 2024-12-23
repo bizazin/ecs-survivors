@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e747f7522821401b913626f41ef43f61, type: 3}
+  m_Script: {fileID: 11500000, guid: 9833df43fb064a3199752651eaefcfde, type: 3}
   m_Name: GarlicAuraConfig
   m_EditorClassIdentifier: 
   AbilityId: 2
   Levels:
-  - Icon: {fileID: 21300000, guid: 74e3aa8890b1b2143a58e7e253016600, type: 3}
+  - Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
     Description: Adds an odourous aura
     Cooldown: 0
-    ViewPrefab: {fileID: 4427034919162153003, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
+    ViewPrefab: {fileID: 2893445765622195075, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
     EffectSetups: []
     StatusSetups:
     - StatusTypeId: 2
@@ -34,10 +34,10 @@ MonoBehaviour:
     AuraSetup:
       Radius: 2
       Interval: 0.5
-  - Icon: {fileID: 21300000, guid: 74e3aa8890b1b2143a58e7e253016600, type: 3}
+  - Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
     Description: Increases odour strength
     Cooldown: 0
-    ViewPrefab: {fileID: 4427034919162153003, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
+    ViewPrefab: {fileID: 2893445765622195075, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 0.2
@@ -56,10 +56,10 @@ MonoBehaviour:
     AuraSetup:
       Radius: 5
       Interval: 0.5
-  - Icon: {fileID: 21300000, guid: 74e3aa8890b1b2143a58e7e253016600, type: 3}
+  - Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
     Description: Increases odour strength even further
     Cooldown: 0
-    ViewPrefab: {fileID: 4427034919162153003, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
+    ViewPrefab: {fileID: 2893445765622195075, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 0.35
@@ -78,10 +78,10 @@ MonoBehaviour:
     AuraSetup:
       Radius: 8
       Interval: 0.5
-  - Icon: {fileID: 21300000, guid: 74e3aa8890b1b2143a58e7e253016600, type: 3}
+  - Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
     Description: Increases odour stunrate
     Cooldown: 0
-    ViewPrefab: {fileID: 4427034919162153003, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
+    ViewPrefab: {fileID: 2893445765622195075, guid: c4c8cf39ebe3672468c50bd2fedcd936, type: 3}
     EffectSetups:
     - EffectTypeId: 1
       Value: 0.35

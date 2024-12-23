@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5e1217df9149d19e624e0fb90dbc6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 190a1235383847b983940f0e90c9f82a, type: 3}
   m_Name: ExplosiveArmamentsConfig
   m_EditorClassIdentifier: 
   TypeId: 2
@@ -19,4 +19,4 @@ MonoBehaviour:
     Value: 3
   StatusSetups: []
   Radius: 2
-  ViewPrefab: {fileID: 4606764203406240733, guid: 1341d554ea3ef934da5f10cbfae07840, type: 3}
+  ViewPrefab: {fileID: 6902555966744461871, guid: 1341d554ea3ef934da5f10cbfae07840, type: 3}

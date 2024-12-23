@@ -92,13 +92,13 @@ namespace Code.Gameplay.StaticData
     {
       _lootById = Resources
         .LoadAll<LootConfig>("Configs/Loot")
-        .ToDictionary(x => x.TypeId, x => x);
+        .ToDictionary(x => x.LootTypeId, x => x);
     }
     
     private void LoadWindows()
     {
       _windowPrefabsById = Resources
-        .Load<WindowsConfig>("Configs/Windows/windowConfig")
+        .Load<WindowsConfig>("Configs/Windows/windowsConfig")
         .WindowConfigs
         .ToDictionary(x => x.Id, x => x.Prefab);
     }

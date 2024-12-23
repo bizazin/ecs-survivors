@@ -34,10 +34,10 @@ public sealed partial class GameMatcher {
 public partial class GameEntity {
 
     public Code.Gameplay.Features.Enchants.EnchantVisualsComponent enchantVisuals { get { return (Code.Gameplay.Features.Enchants.EnchantVisualsComponent)GetComponent(GameComponentsLookup.EnchantVisuals); } }
-    public Code.Gameplay.Common.Visuals.Enchants.EnchantVisuals EnchantVisuals { get { return enchantVisuals.Value; } }
+    public Code.Gameplay.Common.Visuals.Enchants.IEnchantVisuals EnchantVisuals { get { return enchantVisuals.Value; } }
     public bool hasEnchantVisuals { get { return HasComponent(GameComponentsLookup.EnchantVisuals); } }
 
-    public GameEntity AddEnchantVisuals(Code.Gameplay.Common.Visuals.Enchants.EnchantVisuals newValue) {
+    public GameEntity AddEnchantVisuals(Code.Gameplay.Common.Visuals.Enchants.IEnchantVisuals newValue) {
         var index = GameComponentsLookup.EnchantVisuals;
         var component = (Code.Gameplay.Features.Enchants.EnchantVisualsComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Enchants.EnchantVisualsComponent));
         component.Value = newValue;
@@ -45,7 +45,7 @@ public partial class GameEntity {
         return this;
     }
 
-    public GameEntity ReplaceEnchantVisuals(Code.Gameplay.Common.Visuals.Enchants.EnchantVisuals newValue) {
+    public GameEntity ReplaceEnchantVisuals(Code.Gameplay.Common.Visuals.Enchants.IEnchantVisuals newValue) {
         var index = GameComponentsLookup.EnchantVisuals;
         var component = (Code.Gameplay.Features.Enchants.EnchantVisualsComponent)CreateComponent(index, typeof(Code.Gameplay.Features.Enchants.EnchantVisualsComponent));
         component.Value = newValue;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6848469130549857095}
   - component: {fileID: 1557407318731609291}
-  - component: {fileID: 4691461040561199503}
+  - component: {fileID: 5976046918540340669}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4691461040561199503
+--- !u!114 &5976046918540340669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,14 +94,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 792109486133688577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4aa7d6ea40f6b438162bedf4490ec3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fea46d9a21f47a1a494e6ddce632159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Renderer: {fileID: 1557407318731609291}
   FreezeColor: {r: 0.21960784, g: 0.6392157, b: 0.74509805, a: 1}
   FreezeOutlineSize: 3
   FreezeOutlineSmoothness: 8
-  PoisonColor: {r: 0.007843138, g: 1, b: 0.003921569, a: 1}
+  PoisonColor: {r: 0.003921569, g: 1, b: 0, a: 1}
   PoisonColorIntensity: 0.6
 --- !u!1 &3360128356117953061
 GameObject:
@@ -112,9 +112,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045153556455938967}
-  - component: {fileID: 4021537507535299589}
-  - component: {fileID: 2158704649640061166}
-  - component: {fileID: 515747829830356064}
+  - component: {fileID: 7604695528526262236}
+  - component: {fileID: 6116180036570099195}
+  - component: {fileID: 1998858275910845286}
   m_Layer: 0
   m_Name: projectileBase
   m_TagString: Untagged
@@ -138,7 +138,7 @@ Transform:
   - {fileID: 1065704985033883940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4021537507535299589
+--- !u!114 &7604695528526262236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,10 +147,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3360128356117953061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1055a60383495d91c73aa90f21b265, type: 3}
+  m_Script: {fileID: 11500000, guid: 511653e70f1b4434a642cfce8b90ee4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2158704649640061166
+--- !u!114 &6116180036570099195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,11 +159,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3360128356117953061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a23de77635402eaf3995228a41bf28, type: 3}
+  m_Script: {fileID: 11500000, guid: a05134c594a6494d9f8c83798b4783ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityView: {fileID: 4021537507535299589}
---- !u!114 &515747829830356064
+  EntityView: {fileID: 7604695528526262236}
+--- !u!114 &1998858275910845286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,11 +172,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3360128356117953061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59bd650ae87a2c44f873a0a85c1a4091, type: 3}
+  m_Script: {fileID: 11500000, guid: 323d16d6cb0044ff90075f488021ecc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityView: {fileID: 4021537507535299589}
-  EnchantVisuals: {fileID: 4691461040561199503}
+  EntityView: {fileID: 7604695528526262236}
+  EnchantVisuals: {fileID: 5976046918540340669}
 --- !u!1 &7376349850620682343
 GameObject:
   m_ObjectHideFlags: 0
