@@ -5,38 +5,38 @@ using Code.Progress.Provider;
 
 namespace Code.Infrastructure.States.GameStates
 {
-  public class InitializeProgressState : IState
-  {
-    private readonly IGameStateMachine _stateMachine;
-    private readonly IProgressProvider _progressProvider;
-
-    public InitializeProgressState(
-      IGameStateMachine stateMachine,
-      IProgressProvider progressProvider)
+    public class InitializeProgressState : IState
     {
-      _stateMachine = stateMachine;
-      _progressProvider = progressProvider;
-    }
-    
-    public void Enter()
-    {
-      InitializeProgress();
+        private readonly IProgressProvider _progressProvider;
+        private readonly IGameStateMachine _stateMachine;
 
-      _stateMachine.Enter<LoadingHomeScreenState>();
-    }
+        public InitializeProgressState(
+            IGameStateMachine stateMachine,
+            IProgressProvider progressProvider)
+        {
+            _stateMachine = stateMachine;
+            _progressProvider = progressProvider;
+        }
 
-    private void InitializeProgress()
-    {
-      CreateNewProgress();
-    }
+        public void Enter()
+        {
+            InitializeProgress();
 
-    private void CreateNewProgress()
-    {
-      _progressProvider.SetProgressData(new ProgressData());
-    }
+            _stateMachine.Enter<LoadingHomeScreenState>();
+        }
 
-    public void Exit()
-    {
+        public void Exit()
+        {
+        }
+
+        private void InitializeProgress()
+        {
+            CreateNewProgress();
+        }
+
+        private void CreateNewProgress()
+        {
+            _progressProvider.SetProgressData(new ProgressData());
+        }
     }
-  }
 }

@@ -3,19 +3,19 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Enemies
 {
-  public sealed class EnemyFeature : Feature
-  {
-    public EnemyFeature(ISystemFactory systems)
+    public sealed class EnemyFeature : Feature
     {
-      Add(systems.Create<InitializeSpawnTimerSystem>());
-      
-      Add(systems.Create<EnemySpawnSystem>());
-      
-      Add(systems.Create<EnemyChaseHeroSystem>());
-      Add(systems.Create<EnemyDeathSystem>());
-      Add(systems.Create<EnemyDropLootSystem>());
-      
-      Add(systems.Create<FinalizeEnemyDeathProcessingSystem>());
+        public EnemyFeature(ISystemFactory systems)
+        {
+            Add(systems.Create<InitializeSpawnTimerSystem>());
+
+            Add(systems.Create<EnemySpawnSystem>());
+
+            Add(systems.Create<EnemyChaseHeroSystem>());
+            Add(systems.Create<EnemyDeathSystem>());
+            Add(systems.Create<EnemyDropLootSystem>());
+
+            Add(systems.Create<FinalizeEnemyDeathProcessingSystem>());
+        }
     }
-  }
 }

@@ -3,27 +3,27 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Effects.Systems
 {
-  public class RemoveEffectsWithoutTargetsSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _effects;
-    private readonly List<GameEntity> _buffer = new(128);
-
-    public RemoveEffectsWithoutTargetsSystem(GameContext game)
+    public class RemoveEffectsWithoutTargetsSystem : IExecuteSystem
     {
-      _effects = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Effect,
-          GameMatcher.TargetId));
-    }
+        private readonly List<GameEntity> _buffer = new(128);
+        private readonly IGroup<GameEntity> _effects;
 
-    public void Execute()
-    {
-      foreach (GameEntity effect in _effects.GetEntities(_buffer))
-      {
-        GameEntity target = effect.Target();
-        if (target == null)
-          effect.Destroy();
-      }
+        public RemoveEffectsWithoutTargetsSystem(GameContext game)
+        {
+            _effects = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.Effect,
+                    GameMatcher.TargetId));
+        }
+
+        public void Execute()
+        {
+            foreach (var effect in _effects.GetEntities(_buffer))
+            {
+                var target = effect.Target();
+                if (target == null)
+                    effect.Destroy();
+            }
+        }
     }
-  }
 }

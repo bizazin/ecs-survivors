@@ -4,43 +4,43 @@ using Zenject;
 
 namespace Code.Infrastructure.View.Factory
 {
-  public class EntityViewFactory : IEntityViewFactory
-  {
-    private readonly IAssetProvider _assetProvider;
-    private readonly IInstantiator _instantiator;
-    private readonly Vector3 _farAway = new(-999, 999, 0);
-
-    public EntityViewFactory(IAssetProvider assetProvider, IInstantiator instantiator)
+    public class EntityViewFactory : IEntityViewFactory
     {
-      _assetProvider = assetProvider;
-      _instantiator = instantiator;
-    }
-    
-    public EntityBehaviour CreateViewForEntity(GameEntity entity)
-    {
-      EntityBehaviour viewPrefab = _assetProvider.LoadAsset<EntityBehaviour>(entity.ViewPath);
-      EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(
-        viewPrefab,
-        position: _farAway,
-        Quaternion.identity,
-        parentTransform: null);
-      
-      view.SetEntity(entity);
+        private readonly IAssetProvider _assetProvider;
+        private readonly Vector3 _farAway = new(-999, 999, 0);
+        private readonly IInstantiator _instantiator;
 
-      return view;
-    }
+        public EntityViewFactory(IAssetProvider assetProvider, IInstantiator instantiator)
+        {
+            _assetProvider = assetProvider;
+            _instantiator = instantiator;
+        }
 
-    public EntityBehaviour CreateViewForEntityFromPrefab(GameEntity entity)
-    {
-      EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(
-        entity.ViewPrefab,
-        position: _farAway,
-        Quaternion.identity,
-        parentTransform: null);
-      
-      view.SetEntity(entity);
+        public EntityBehaviour CreateViewForEntity(GameEntity entity)
+        {
+            var viewPrefab = _assetProvider.LoadAsset<EntityBehaviour>(entity.ViewPath);
+            var view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(
+                viewPrefab,
+                _farAway,
+                Quaternion.identity,
+                null);
 
-      return view;
+            view.SetEntity(entity);
+
+            return view;
+        }
+
+        public EntityBehaviour CreateViewForEntityFromPrefab(GameEntity entity)
+        {
+            var view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>(
+                entity.ViewPrefab,
+                _farAway,
+                Quaternion.identity,
+                null);
+
+            view.SetEntity(entity);
+
+            return view;
+        }
     }
-  }
 }

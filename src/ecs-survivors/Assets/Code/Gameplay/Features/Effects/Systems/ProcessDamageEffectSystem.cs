@@ -2,35 +2,35 @@
 
 namespace Code.Gameplay.Features.Effects.Systems
 {
-  public class ProcessDamageEffectSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _effects;
-
-    public ProcessDamageEffectSystem(GameContext game)
+    public class ProcessDamageEffectSystem : IExecuteSystem
     {
-      _effects = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.DamageEffect,
-          GameMatcher.EffectValue,
-          GameMatcher.TargetId));
-    }
+        private readonly IGroup<GameEntity> _effects;
 
-    public void Execute()
-    {
-      foreach (GameEntity effect in _effects)
-      {
-        GameEntity target = effect.Target();
+        public ProcessDamageEffectSystem(GameContext game)
+        {
+            _effects = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.DamageEffect,
+                    GameMatcher.EffectValue,
+                    GameMatcher.TargetId));
+        }
 
-        effect.isProcessed = true;
-       
-        if (target.isDead)
-          continue;
-        
-        target.ReplaceCurrentHp(target.CurrentHp - effect.EffectValue);
-        
-        if(target.hasDamageTakenAnimator)
-          target.DamageTakenAnimator.PlayDamageTaken();
-      }
+        public void Execute()
+        {
+            foreach (var effect in _effects)
+            {
+                var target = effect.Target();
+
+                effect.isProcessed = true;
+
+                if (target.isDead)
+                    continue;
+
+                target.ReplaceCurrentHp(target.CurrentHp - effect.EffectValue);
+
+                if (target.hasDamageTakenAnimator)
+                    target.DamageTakenAnimator.PlayDamageTaken();
+            }
+        }
     }
-  }
 }

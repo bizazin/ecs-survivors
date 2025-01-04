@@ -13,7 +13,7 @@ namespace Code.Gameplay.Features.Loot.Systems
 
         public void Cleanup()
         {
-            foreach (GameEntity collected in _collected) 
+            foreach (var collected in _collected)
                 collected.isDestructed = true;
         }
     }

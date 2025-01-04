@@ -3,11 +3,10 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Effects.Systems
 {
-
     public class CleanupProcessedEffectsSystem : ICleanupSystem
     {
-        private readonly IGroup<GameEntity> _effects;
         private readonly List<GameEntity> _buffer = new(32);
+        private readonly IGroup<GameEntity> _effects;
 
         public CleanupProcessedEffectsSystem(GameContext game)
         {
@@ -19,14 +18,7 @@ namespace Code.Gameplay.Features.Effects.Systems
 
         public void Cleanup()
         {
-            foreach (GameEntity effect in _effects.GetEntities(_buffer))
-            {
-                effect.Destroy();
-            }
+            foreach (var effect in _effects.GetEntities(_buffer)) effect.Destroy();
         }
     }
-
-
-
-
 }

@@ -3,25 +3,25 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Armaments.Behaviours
 {
-  public class AuraSizeListener : EntityDependant
-  {
-    public Transform Container;
-    private float _radiusPrev;
-
-    private void Update()
+    public class AuraSizeListener : EntityDependant
     {
-      if (Mathf.Abs(Entity.Radius - _radiusPrev) < Mathf.Epsilon)
-        return;
-      
-      SetAuraScale();
-    }
+        public Transform Container;
+        private float _radiusPrev;
 
-    private void SetAuraScale()
-    {
-      float scale = Entity.Radius * 2;
-      Container.localScale = new Vector3(scale, scale, scale);
+        private void Update()
+        {
+            if (Mathf.Abs(Entity.Radius - _radiusPrev) < Mathf.Epsilon)
+                return;
 
-      _radiusPrev = Entity.Radius;
+            SetAuraScale();
+        }
+
+        private void SetAuraScale()
+        {
+            var scale = Entity.Radius * 2;
+            Container.localScale = new Vector3(scale, scale, scale);
+
+            _radiusPrev = Entity.Radius;
+        }
     }
-  }
 }

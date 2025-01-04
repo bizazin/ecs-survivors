@@ -11,56 +11,59 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 public sealed partial class GameEntity : INamedEntity
 {
-  private EntityPrinter _printer;
+    private EntityPrinter _printer;
 
-  public override string ToString()
-  {
-    if (_printer == null)
-      _printer = new EntityPrinter(this);
-
-    _printer.InvalidateCache();
-
-    return _printer.BuildToString();
-  }
-
-  public string EntityName(IComponent[] components)
-  {
-    try
+    public string EntityName(IComponent[] components)
     {
-      if (components.Length == 1)
-        return components[0].GetType().Name;
-
-      foreach (IComponent component in components)
-      {
-        switch (component.GetType().Name)
+        try
         {
-          case nameof(Hero):
-            return PrintHero();
+            if (components.Length == 1)
+                return components[0].GetType().Name;
 
-          case nameof(Enemy):
-            return PrintEnemy();
+            foreach (var component in components)
+                switch (component.GetType().Name)
+                {
+                    case nameof(Hero):
+                        return PrintHero();
+
+                    case nameof(Enemy):
+                        return PrintEnemy();
+                }
         }
-      }
+        catch (Exception exception)
+        {
+            Debug.LogError(exception.Message);
+        }
+
+        return components.First().GetType().Name;
     }
-    catch (Exception exception)
+
+    public string BaseToString()
     {
-      Debug.LogError(exception.Message);
+        return base.ToString();
     }
 
-    return components.First().GetType().Name;
-  }
+    public override string ToString()
+    {
+        if (_printer == null)
+            _printer = new EntityPrinter(this);
 
-  private string PrintHero()
-  {
-    return new StringBuilder($"Hero ")
-      .With(s => s.Append($"Id:{Id}"), when: hasId)
-      .ToString();
-  }
-  
-  private string PrintEnemy() =>
-    new StringBuilder($"Enemy ")
-      .With(s => s.Append($"Id:{Id}"), when: hasId)
-      .ToString();
-  
-  public string BaseToString() => base.ToString();
+        _printer.InvalidateCache();
+
+        return _printer.BuildToString();
+    }
+
+    private string PrintHero()
+    {
+        return new StringBuilder("Hero ")
+            .With(s => s.Append($"Id:{Id}"), hasId)
+            .ToString();
+    }
+
+    private string PrintEnemy()
+    {
+        return new StringBuilder("Enemy ")
+            .With(s => s.Append($"Id:{Id}"), hasId)
+            .ToString();
+    }
 }

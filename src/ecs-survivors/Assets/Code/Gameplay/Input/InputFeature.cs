@@ -3,12 +3,12 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Input
 {
-  public class InputFeature : Feature
-  {
-    public InputFeature(ISystemFactory systems)
+    public class InputFeature : Feature
     {
-      Add(systems.Create<InitializeInputSystem>());
-      Add(systems.Create<EmitInputSystem>());
+        public InputFeature(ISystemFactory systems)
+        {
+            Add(systems.Create<InitializeInputSystem>());
+            Add(systems.Create<EmitInputSystem>());
+        }
     }
-  }
 }

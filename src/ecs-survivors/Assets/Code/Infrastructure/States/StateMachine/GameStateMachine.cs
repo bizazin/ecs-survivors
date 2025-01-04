@@ -4,42 +4,42 @@ using Zenject;
 
 namespace Code.Infrastructure.States.StateMachine
 {
-  public class GameStateMachine : IGameStateMachine, ITickable
-  {
-    private IExitableState _activeState;
-    private readonly IStateFactory _stateFactory;
+    public class GameStateMachine : IGameStateMachine, ITickable
+    {
+        private readonly IStateFactory _stateFactory;
+        private IExitableState _activeState;
 
-    public GameStateMachine(IStateFactory stateFactory)
-    {
-      _stateFactory = stateFactory;
-    }
+        public GameStateMachine(IStateFactory stateFactory)
+        {
+            _stateFactory = stateFactory;
+        }
 
-    public void Tick()
-    {
-      if(_activeState is IUpdateable updateableState)
-        updateableState.Update();
-    }
-    
-    public void Enter<TState>() where TState : class, IState
-    {
-      IState state = ChangeState<TState>();
-      state.Enter();
-    }
-    
-    public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadState<TPayload>
-    {
-      TState state = ChangeState<TState>();
-      state.Enter(payload);
-    }
+        public void Enter<TState>() where TState : class, IState
+        {
+            IState state = ChangeState<TState>();
+            state.Enter();
+        }
 
-    private TState ChangeState<TState>() where TState : class, IExitableState
-    {
-      _activeState?.Exit();
-      
-      TState state = _stateFactory.GetState<TState>();
-      _activeState = state;
-      
-      return state;
+        public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadState<TPayload>
+        {
+            var state = ChangeState<TState>();
+            state.Enter(payload);
+        }
+
+        public void Tick()
+        {
+            if (_activeState is IUpdateable updateableState)
+                updateableState.Update();
+        }
+
+        private TState ChangeState<TState>() where TState : class, IExitableState
+        {
+            _activeState?.Exit();
+
+            var state = _stateFactory.GetState<TState>();
+            _activeState = state;
+
+            return state;
+        }
     }
-  }
 }

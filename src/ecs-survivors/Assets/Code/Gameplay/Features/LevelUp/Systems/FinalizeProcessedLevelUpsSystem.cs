@@ -2,22 +2,22 @@ using Entitas;
 
 namespace Code.Gameplay.Features.LevelUp.Systems
 {
-  public class FinalizeProcessedLevelUpsSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _levelUps;
-
-    public FinalizeProcessedLevelUpsSystem(GameContext game)
+    public class FinalizeProcessedLevelUpsSystem : IExecuteSystem
     {
-      _levelUps = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.LevelUp,
-          GameMatcher.Processed));
-    }
+        private readonly IGroup<GameEntity> _levelUps;
 
-    public void Execute()
-    {
-      foreach (GameEntity levelUp in _levelUps) 
-        levelUp.isDestructed = true;
+        public FinalizeProcessedLevelUpsSystem(GameContext game)
+        {
+            _levelUps = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.LevelUp,
+                    GameMatcher.Processed));
+        }
+
+        public void Execute()
+        {
+            foreach (var levelUp in _levelUps)
+                levelUp.isDestructed = true;
+        }
     }
-  }
 }

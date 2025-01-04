@@ -2,26 +2,18 @@ using Code.Infrastructure.States.StateInfrastructure;
 
 namespace Code.Infrastructure.States.GameStates
 {
-  public class BattleLoopState : IState, IUpdateable
-  {
-    public BattleLoopState()
+    public class BattleLoopState : IState, IUpdateable
     {
-     
-    }
-    
-    public void Enter()
-    {
-     
-    }
+        public void Enter()
+        {
+        }
 
-    public void Update()
-    {
-     
-    }
+        public void Exit()
+        {
+        }
 
-    public void Exit()
-    {
-      
+        public void Update()
+        {
+        }
     }
-  }
 }

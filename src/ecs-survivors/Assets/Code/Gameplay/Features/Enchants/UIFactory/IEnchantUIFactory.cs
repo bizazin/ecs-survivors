@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Enchants.UIFactory
 {
-  public interface IEnchantUIFactory
-  {
-    Enchant CreateEnchant(Transform parent, EnchantTypeId enchantType);
-  }
+    public interface IEnchantUIFactory
+    {
+        Enchant CreateEnchant(Transform parent, EnchantTypeId enchantType);
+    }
 }

@@ -4,12 +4,12 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Enemies.Systems
 {
-  public class InitializeSpawnTimerSystem : IInitializeSystem
-  {
-    public void Initialize()
+    public class InitializeSpawnTimerSystem : IInitializeSystem
     {
-      CreateEntity.Empty()
-        .AddSpawnTimer(GameplayConstants.EnemySpawnTimer);
+        public void Initialize()
+        {
+            CreateEntity.Empty()
+                .AddSpawnTimer(GameplayConstants.EnemySpawnTimer);
+        }
     }
-  }
 }

@@ -2,32 +2,32 @@
 
 namespace Code.Gameplay.Features.Enemies.Systems
 {
-  public class EnemyChaseHeroSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _enemies;
-    private readonly IGroup<GameEntity> _heroes;
-
-    public EnemyChaseHeroSystem(GameContext game)
+    public class EnemyChaseHeroSystem : IExecuteSystem
     {
-      _enemies = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Enemy,
-          GameMatcher.WorldPosition));
+        private readonly IGroup<GameEntity> _enemies;
+        private readonly IGroup<GameEntity> _heroes;
 
-      _heroes = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Hero,
-          GameMatcher.WorldPosition));
-    }
+        public EnemyChaseHeroSystem(GameContext game)
+        {
+            _enemies = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.Enemy,
+                    GameMatcher.WorldPosition));
 
-    public void Execute()
-    {
-      foreach (GameEntity hero in _heroes)
-      foreach (GameEntity enemy in _enemies)
-      {
-        enemy.ReplaceDirection((hero.WorldPosition - enemy.WorldPosition).normalized);
-        enemy.isMoving = true;
-      }
+            _heroes = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.Hero,
+                    GameMatcher.WorldPosition));
+        }
+
+        public void Execute()
+        {
+            foreach (var hero in _heroes)
+            foreach (var enemy in _enemies)
+            {
+                enemy.ReplaceDirection((hero.WorldPosition - enemy.WorldPosition).normalized);
+                enemy.isMoving = true;
+            }
+        }
     }
-  }
 }

@@ -2,13 +2,13 @@
 
 namespace Code.Progress.Provider
 {
-  public class ProgressProvider : IProgressProvider
-  {
-    public ProgressData ProgressData { get; private set; }
-
-    public void SetProgressData(ProgressData data)
+    public class ProgressProvider : IProgressProvider
     {
-      ProgressData = data;
+        public ProgressData ProgressData { get; private set; }
+
+        public void SetProgressData(ProgressData data)
+        {
+            ProgressData = data;
+        }
     }
-  }
 }

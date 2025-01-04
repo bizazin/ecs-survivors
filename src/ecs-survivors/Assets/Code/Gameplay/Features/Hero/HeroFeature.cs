@@ -4,18 +4,18 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Hero
 {
-  public sealed class HeroFeature : Feature
-  {
-    public HeroFeature(ISystemFactory systems)
+    public sealed class HeroFeature : Feature
     {
-      Add(systems.Create<InitializeHeroSystem>());
-      
-      Add(systems.Create<SetHeroDirectionByInputSystem>());
-      Add(systems.Create<CameraFollowHeroSystem>());
-      Add(systems.Create<AnimateHeroMovementSystem>());
-      Add(systems.Create<HeroDeathSystem>());
-      
-      Add(systems.Create<FinalizeHeroDeathProcessingSystem>());
+        public HeroFeature(ISystemFactory systems)
+        {
+            Add(systems.Create<InitializeHeroSystem>());
+
+            Add(systems.Create<SetHeroDirectionByInputSystem>());
+            Add(systems.Create<CameraFollowHeroSystem>());
+            Add(systems.Create<AnimateHeroMovementSystem>());
+            Add(systems.Create<HeroDeathSystem>());
+
+            Add(systems.Create<FinalizeHeroDeathProcessingSystem>());
+        }
     }
-  }
 }

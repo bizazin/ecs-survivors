@@ -1,25 +1,25 @@
 namespace Code.Gameplay.Features.Cooldowns
 {
-  public static class CooldownEntityExtensions
-  {
-    public static GameEntity PutOnCooldown(this GameEntity entity)
+    public static class CooldownEntityExtensions
     {
-      if (!entity.hasCooldown)
-        return entity;
+        public static GameEntity PutOnCooldown(this GameEntity entity)
+        {
+            if (!entity.hasCooldown)
+                return entity;
 
-      entity.isCooldownUp = false;
-      entity.ReplaceCooldownLeft(entity.Cooldown);
+            entity.isCooldownUp = false;
+            entity.ReplaceCooldownLeft(entity.Cooldown);
 
-      return entity;
+            return entity;
+        }
+
+        public static GameEntity PutOnCooldown(this GameEntity entity, float cooldown)
+        {
+            entity.isCooldownUp = false;
+            entity.ReplaceCooldown(cooldown);
+            entity.ReplaceCooldownLeft(cooldown);
+
+            return entity;
+        }
     }
-
-    public static GameEntity PutOnCooldown(this GameEntity entity, float cooldown)
-    {
-      entity.isCooldownUp = false;
-      entity.ReplaceCooldown(cooldown);
-      entity.ReplaceCooldownLeft(cooldown);
-
-      return entity;
-    }
-  }
 }

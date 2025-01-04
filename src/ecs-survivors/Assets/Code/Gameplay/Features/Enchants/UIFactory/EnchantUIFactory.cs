@@ -6,28 +6,30 @@ using Zenject;
 
 namespace Code.Gameplay.Features.Enchants.UIFactory
 {
-  public class EnchantUIFactory : IEnchantUIFactory
-  {
-    private const string EnchantPrefabPath = "UI/Enchants/Enchant";
-    
-    private readonly IInstantiator _instantiator;
-    private readonly IAssetProvider _assetProvider;
-    private readonly IStaticDataService _staticData;
-
-    public EnchantUIFactory(IInstantiator instantiator, IAssetProvider assetProvider, IStaticDataService staticData)
+    public class EnchantUIFactory : IEnchantUIFactory
     {
-      _instantiator = instantiator;
-      _assetProvider = assetProvider;
-      _staticData = staticData;
-    }
+        private const string EnchantPrefabPath = "UI/Enchants/Enchant";
+        private readonly IAssetProvider _assetProvider;
 
-    public Enchant CreateEnchant(Transform parent, EnchantTypeId enchantType)
-    {
-      EnchantConfig config = _staticData.GetEnchantConfig(enchantType);
-      Enchant enchant = _instantiator.InstantiatePrefabForComponent<Enchant>(_assetProvider.LoadAsset(EnchantPrefabPath), parent);
-      enchant.Set(config);
+        private readonly IInstantiator _instantiator;
+        private readonly IStaticDataService _staticData;
 
-      return enchant;
+        public EnchantUIFactory(IInstantiator instantiator, IAssetProvider assetProvider, IStaticDataService staticData)
+        {
+            _instantiator = instantiator;
+            _assetProvider = assetProvider;
+            _staticData = staticData;
+        }
+
+        public Enchant CreateEnchant(Transform parent, EnchantTypeId enchantType)
+        {
+            var config = _staticData.GetEnchantConfig(enchantType);
+            var enchant =
+                _instantiator.InstantiatePrefabForComponent<Enchant>(_assetProvider.LoadAsset(EnchantPrefabPath),
+                    parent);
+            enchant.Set(config);
+
+            return enchant;
+        }
     }
-  }
 }

@@ -5,19 +5,19 @@ namespace Code.Gameplay.Features.Statuses.Systems
 {
     public class CleanupUnappliedStatusesSystem : ICleanupSystem
     {
-        private readonly IGroup<GameEntity> _statuses;
         private readonly List<GameEntity> _buffer = new(32);
+        private readonly IGroup<GameEntity> _statuses;
 
         public CleanupUnappliedStatusesSystem(GameContext game)
         {
             _statuses = game.GetGroup(GameMatcher.AllOf(
-                GameMatcher.Status, 
+                GameMatcher.Status,
                 GameMatcher.Unapplied));
         }
 
         public void Cleanup()
         {
-            foreach (GameEntity status in _statuses.GetEntities(_buffer)) 
+            foreach (var status in _statuses.GetEntities(_buffer))
                 status.isDestructed = true;
         }
     }

@@ -8,41 +8,46 @@ using UnityEngine.UI;
 
 namespace Code.Gameplay.Features.LevelUp.Behaviours
 {
-  public class AbilityCard : MonoBehaviour
-  {
-    private const float StampAnimationTime = 1f;
-    
-    public AbilityId Id;
-    public Image Icon;
-    public TextMeshProUGUI Description;
-    public Button SelectCardButton;
-    public GameObject Stamp;
-    
-    private Action<AbilityId> _onSelected;
-
-    public AbilityCard Setup(AbilityId id, AbilityLevel abilityLevel, Action<AbilityId> onSelected)
+    public class AbilityCard : MonoBehaviour
     {
-      _onSelected = onSelected;
-      Id = id;
-      Icon.sprite = abilityLevel.Icon;
-      Description.text = abilityLevel.Description;
+        private const float StampAnimationTime = 1f;
 
-      SelectCardButton.onClick.AddListener(SelectCard);
+        public AbilityId Id;
+        public Image Icon;
+        public TextMeshProUGUI Description;
+        public Button SelectCardButton;
+        public GameObject Stamp;
 
-      return this;
+        private Action<AbilityId> _onSelected;
+
+        private void OnDestroy()
+        {
+            SelectCardButton.onClick.RemoveListener(SelectCard);
+        }
+
+        public AbilityCard Setup(AbilityId id, AbilityLevel abilityLevel, Action<AbilityId> onSelected)
+        {
+            _onSelected = onSelected;
+            Id = id;
+            Icon.sprite = abilityLevel.Icon;
+            Description.text = abilityLevel.Description;
+
+            SelectCardButton.onClick.AddListener(SelectCard);
+
+            return this;
+        }
+
+        private void SelectCard()
+        {
+            StartCoroutine(StampAndReport());
+        }
+
+        private IEnumerator StampAndReport()
+        {
+            Stamp.SetActive(true);
+            yield return new WaitForSeconds(StampAnimationTime);
+
+            _onSelected(Id);
+        }
     }
-
-    private void OnDestroy() => 
-      SelectCardButton.onClick.RemoveListener(SelectCard);
-
-    private void SelectCard() => 
-      StartCoroutine(StampAndReport());
-
-    private IEnumerator StampAndReport()
-    {
-      Stamp.SetActive(true);
-      yield return new WaitForSeconds(StampAnimationTime);
-      
-      _onSelected(Id);
-    }
-  }}
+}

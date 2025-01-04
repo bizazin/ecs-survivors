@@ -3,17 +3,19 @@ using Code.Infrastructure.View.Registrars;
 
 namespace Code.Gameplay.Features.LevelUp.Registrars
 {
-  public class ExperienceMeterRegistrar : EntityComponentRegistrar
-  {
-    public ExperienceMeter ExperienceMeter;
-    
-    public override void RegisterComponents() => 
-      Entity.AddExperienceMeter(ExperienceMeter);
-
-    public override void UnregisterComponents()
+    public class ExperienceMeterRegistrar : EntityComponentRegistrar
     {
-      if (Entity.hasExperienceMeter)
-        Entity.RemoveExperienceMeter();
+        public ExperienceMeter ExperienceMeter;
+
+        public override void RegisterComponents()
+        {
+            Entity.AddExperienceMeter(ExperienceMeter);
+        }
+
+        public override void UnregisterComponents()
+        {
+            if (Entity.hasExperienceMeter)
+                Entity.RemoveExperienceMeter();
+        }
     }
-  }
 }

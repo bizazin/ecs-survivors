@@ -4,48 +4,47 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Loot.Systems
 {
-  public class CastForPullablesSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _looters;
-    private readonly IPhysicsService _physicsService;
-    private readonly GameEntity[] _hitBuffer = new GameEntity[128];
-    private readonly int _layerMask = CollisionLayer.Collectable.AsMask();
-
-    public CastForPullablesSystem(GameContext game, IPhysicsService physicsService)
+    public class CastForPullablesSystem : IExecuteSystem
     {
-      _physicsService = physicsService;
-      _looters = game.GetGroup(
-        GameMatcher.AllOf(
-          GameMatcher.WorldPosition, 
-          GameMatcher.PickupRadius));
-    }
+        private readonly GameEntity[] _hitBuffer = new GameEntity[128];
+        private readonly int _layerMask = CollisionLayer.Collectable.AsMask();
+        private readonly IGroup<GameEntity> _looters;
+        private readonly IPhysicsService _physicsService;
 
-    public void Execute()
-    {
-      foreach (GameEntity entity in _looters)
-      {
-        for (int i = 0; i < LootinRadius(entity); i++)
+        public CastForPullablesSystem(GameContext game, IPhysicsService physicsService)
         {
-          if (_hitBuffer[i].isPullable)
-          {
-            _hitBuffer[i].isPullable = false;
-            _hitBuffer[i].isPulling = true;
-          }
+            _physicsService = physicsService;
+            _looters = game.GetGroup(
+                GameMatcher.AllOf(
+                    GameMatcher.WorldPosition,
+                    GameMatcher.PickupRadius));
         }
 
-        ClearBuffer();
-      }
-    }
+        public void Execute()
+        {
+            foreach (var entity in _looters)
+            {
+                for (var i = 0; i < LootinRadius(entity); i++)
+                    if (_hitBuffer[i].isPullable)
+                    {
+                        _hitBuffer[i].isPullable = false;
+                        _hitBuffer[i].isPulling = true;
+                    }
 
-    private void ClearBuffer()
-    {
-      for (int i = 0; i < _hitBuffer.Length; i++) 
-        _hitBuffer[i] = null;
-    }
+                ClearBuffer();
+            }
+        }
 
-    private int LootinRadius(GameEntity entity)
-    {
-      return _physicsService.CircleCastNonAlloc(entity.WorldPosition, radius: entity.PickupRadius, _layerMask, _hitBuffer);
+        private void ClearBuffer()
+        {
+            for (var i = 0; i < _hitBuffer.Length; i++)
+                _hitBuffer[i] = null;
+        }
+
+        private int LootinRadius(GameEntity entity)
+        {
+            return _physicsService.CircleCastNonAlloc(entity.WorldPosition, entity.PickupRadius, _layerMask,
+                _hitBuffer);
+        }
     }
-  }
 }

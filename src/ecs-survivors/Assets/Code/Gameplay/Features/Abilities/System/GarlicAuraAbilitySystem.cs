@@ -5,39 +5,40 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Abilities.System
 {
-  public class GarlicAuraAbilitySystem : IExecuteSystem
-  {
-    private readonly List<GameEntity> _buffer = new(1);
-    
-    private readonly IArmamentFactory _armamentFactory;
-    private readonly IGroup<GameEntity> _abilities;
-    private readonly IGroup<GameEntity> _heroes;
-    private readonly IAbilityUpgradeService _abilityUpgradeService;
-
-    public GarlicAuraAbilitySystem(GameContext game, IArmamentFactory armamentFactory, IAbilityUpgradeService abilityUpgradeService)
+    public class GarlicAuraAbilitySystem : IExecuteSystem
     {
-      _armamentFactory = armamentFactory;
-      _abilityUpgradeService = abilityUpgradeService;
-      _abilities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.GarlicAuraAbility)
-        .NoneOf(GameMatcher.Active));
+        private readonly IGroup<GameEntity> _abilities;
+        private readonly IAbilityUpgradeService _abilityUpgradeService;
 
-      _heroes = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Id,
-          GameMatcher.Hero));
+        private readonly IArmamentFactory _armamentFactory;
+        private readonly List<GameEntity> _buffer = new(1);
+        private readonly IGroup<GameEntity> _heroes;
+
+        public GarlicAuraAbilitySystem(GameContext game, IArmamentFactory armamentFactory,
+            IAbilityUpgradeService abilityUpgradeService)
+        {
+            _armamentFactory = armamentFactory;
+            _abilityUpgradeService = abilityUpgradeService;
+            _abilities = game.GetGroup(GameMatcher
+                .AllOf(GameMatcher.GarlicAuraAbility)
+                .NoneOf(GameMatcher.Active));
+
+            _heroes = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.Id,
+                    GameMatcher.Hero));
+        }
+
+        public void Execute()
+        {
+            foreach (var ability in _abilities.GetEntities(_buffer))
+            foreach (var hero in _heroes)
+            {
+                var level = _abilityUpgradeService.GetAbilityLevel(AbilityId.GarlicAura);
+                _armamentFactory.CreateEffectAura(AbilityId.GarlicAura, hero.Id, level);
+
+                ability.isActive = true;
+            }
+        }
     }
-
-    public void Execute()
-    {
-      foreach (GameEntity ability in _abilities.GetEntities(_buffer))
-      foreach (GameEntity hero in _heroes)
-      {
-        int level = _abilityUpgradeService.GetAbilityLevel(AbilityId.GarlicAura);
-        _armamentFactory.CreateEffectAura(AbilityId.GarlicAura, hero.Id, level);
-
-        ability.isActive = true;
-      }
-    }
-  }
 }

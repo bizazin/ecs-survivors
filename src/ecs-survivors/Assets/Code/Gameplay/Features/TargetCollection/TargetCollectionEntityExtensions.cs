@@ -1,21 +1,21 @@
 ﻿namespace Code.Gameplay.Features.TargetCollection
 {
-  public static class TargetCollectionEntityExtensions
-  {
-    public static GameEntity RemoveTargetCollectionComponents(this GameEntity entity)
+    public static class TargetCollectionEntityExtensions
     {
-      if (entity.hasTargetBuffer)
-        entity.RemoveTargetBuffer();
+        public static GameEntity RemoveTargetCollectionComponents(this GameEntity entity)
+        {
+            if (entity.hasTargetBuffer)
+                entity.RemoveTargetBuffer();
 
-      if (entity.hasCollectTargetsInterval)
-        entity.RemoveCollectTargetsInterval();
+            if (entity.hasCollectTargetsInterval)
+                entity.RemoveCollectTargetsInterval();
 
-      if (entity.hasCollectTargetsTimer)
-        entity.RemoveCollectTargetsTimer();
+            if (entity.hasCollectTargetsTimer)
+                entity.RemoveCollectTargetsTimer();
 
-      entity.isReadyToCollectTargets = false;
-      
-      return entity;
+            entity.isReadyToCollectTargets = false;
+
+            return entity;
+        }
     }
-  }
 }

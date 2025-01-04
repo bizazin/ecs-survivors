@@ -1,6 +1,6 @@
 ﻿namespace Code.Progress.Data
 {
-  public class ProgressData
-  {
-  }
+    public class ProgressData
+    {
+    }
 }

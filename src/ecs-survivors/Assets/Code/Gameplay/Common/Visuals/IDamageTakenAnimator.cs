@@ -1,7 +1,7 @@
 ﻿namespace Code.Gameplay.Common.Visuals
 {
-  public interface IDamageTakenAnimator
-  {
-    void PlayDamageTaken();
-  }
+    public interface IDamageTakenAnimator
+    {
+        void PlayDamageTaken();
+    }
 }

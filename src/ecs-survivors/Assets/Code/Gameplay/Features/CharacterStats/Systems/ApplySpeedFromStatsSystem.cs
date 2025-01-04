@@ -3,30 +3,27 @@ using Entitas;
 
 namespace Code.Gameplay.Features.CharacterStats.Systems
 {
-  public class ApplySpeedFromStatsSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _statOwners;
-
-    public ApplySpeedFromStatsSystem(GameContext game)
+    public class ApplySpeedFromStatsSystem : IExecuteSystem
     {
-      _statOwners = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.BaseStats,
-          GameMatcher.StatModifiers,
-          GameMatcher.Speed));
-    }
+        private readonly IGroup<GameEntity> _statOwners;
 
-    public void Execute()
-    {
-      foreach (GameEntity statOwner in _statOwners)
-      {
-        statOwner.ReplaceSpeed(MoveSpeed(statOwner).ZeroIfNegative());
-      }
-    }
+        public ApplySpeedFromStatsSystem(GameContext game)
+        {
+            _statOwners = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.BaseStats,
+                    GameMatcher.StatModifiers,
+                    GameMatcher.Speed));
+        }
 
-    private static float MoveSpeed(GameEntity statOwner)
-    {
-      return statOwner.BaseStats[Stats.Speed] + statOwner.StatModifiers[Stats.Speed];
+        public void Execute()
+        {
+            foreach (var statOwner in _statOwners) statOwner.ReplaceSpeed(MoveSpeed(statOwner).ZeroIfNegative());
+        }
+
+        private static float MoveSpeed(GameEntity statOwner)
+        {
+            return statOwner.BaseStats[Stats.Speed] + statOwner.StatModifiers[Stats.Speed];
+        }
     }
-  }
 }

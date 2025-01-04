@@ -6,24 +6,28 @@ using Zenject;
 
 namespace Code.Meta.UI.HUD
 {
-  public class HomeHUD : MonoBehaviour
-  {
-    private const string BattleSceneName = "Meadow";
-    
-    private IGameStateMachine _stateMachine;
-
-    public Button StartBattleButton;
-
-    [Inject]
-    private void Construct(IGameStateMachine gameStateMachine) => 
-      _stateMachine = gameStateMachine;
-
-    private void Awake()
+    public class HomeHUD : MonoBehaviour
     {
-      StartBattleButton.onClick.AddListener(EnterBattleLoadingState);
-    }
+        private const string BattleSceneName = "Meadow";
 
-    private void EnterBattleLoadingState() => 
-      _stateMachine.Enter<LoadingBattleState, string>(BattleSceneName);
-  }
+        public Button StartBattleButton;
+
+        private IGameStateMachine _stateMachine;
+
+        private void Awake()
+        {
+            StartBattleButton.onClick.AddListener(EnterBattleLoadingState);
+        }
+
+        [Inject]
+        private void Construct(IGameStateMachine gameStateMachine)
+        {
+            _stateMachine = gameStateMachine;
+        }
+
+        private void EnterBattleLoadingState()
+        {
+            _stateMachine.Enter<LoadingBattleState, string>(BattleSceneName);
+        }
+    }
 }

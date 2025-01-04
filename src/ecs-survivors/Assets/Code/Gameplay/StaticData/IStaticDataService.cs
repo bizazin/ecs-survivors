@@ -8,16 +8,16 @@ using UnityEngine;
 
 namespace Code.Gameplay.StaticData
 {
-  public interface IStaticDataService
-  {
-    void LoadAll();
-    AbilityConfig GetAbilityConfig(AbilityId abilityId);
-    AbilityLevel GetAbilityLevel(AbilityId abilityId, int level);
-    EnchantConfig GetEnchantConfig(EnchantTypeId typeId);
-    LootConfig GetLootConfig(LootTypeId lootTypeId);
-    
-    GameObject GetWindowPrefab(WindowId id);
-    int MaxLevel();
-    float ExperienceForLevel(int level);
-  }
+    public interface IStaticDataService
+    {
+        void LoadAll();
+        AbilityConfig GetAbilityConfig(AbilityId abilityId);
+        AbilityLevel GetAbilityLevel(AbilityId abilityId, int level);
+        EnchantConfig GetEnchantConfig(EnchantTypeId typeId);
+        LootConfig GetLootConfig(LootTypeId lootTypeId);
+
+        GameObject GetWindowPrefab(WindowId id);
+        int MaxLevel();
+        float ExperienceForLevel(int level);
+    }
 }

@@ -3,17 +3,17 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.TargetCollection
 {
-  public sealed class CollectTargetsFeature : Feature
-  {
-    public CollectTargetsFeature(ISystemFactory systems)
+    public sealed class CollectTargetsFeature : Feature
     {
-      Add(systems.Create<CollectTargetsIntervalSystem>());
-      
-      Add(systems.Create<CastForTargetsNoLimitSystem>());
-      Add(systems.Create<CastForTargetsWithLimitSystem>());
-      Add(systems.Create<MarkReachedSystem>());
-      
-      Add(systems.Create<CleanupTargetBuffersSystem>());
+        public CollectTargetsFeature(ISystemFactory systems)
+        {
+            Add(systems.Create<CollectTargetsIntervalSystem>());
+
+            Add(systems.Create<CastForTargetsNoLimitSystem>());
+            Add(systems.Create<CastForTargetsWithLimitSystem>());
+            Add(systems.Create<MarkReachedSystem>());
+
+            Add(systems.Create<CleanupTargetBuffersSystem>());
+        }
     }
-  }
 }

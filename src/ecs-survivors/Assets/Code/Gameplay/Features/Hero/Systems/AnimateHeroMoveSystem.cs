@@ -10,18 +10,16 @@ namespace Code.Gameplay.Features.Hero.Systems
         {
             _heroes = game.GetGroup(GameMatcher.AllOf(
                 GameMatcher.Hero,
-                GameMatcher.HeroAnimator)); 
+                GameMatcher.HeroAnimator));
         }
 
         public void Execute()
         {
             foreach (var hero in _heroes)
-            {
                 if (hero.isMoving)
                     hero.HeroAnimator.PlayMove();
                 else
                     hero.HeroAnimator.PlayIdle();
-            }
         }
     }
 }

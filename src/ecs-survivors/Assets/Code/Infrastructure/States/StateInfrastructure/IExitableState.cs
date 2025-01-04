@@ -1,7 +1,7 @@
 namespace Code.Infrastructure.States.StateInfrastructure
 {
-  public interface IExitableState
-  {
-    void Exit();
-  }
+    public interface IExitableState
+    {
+        void Exit();
+    }
 }

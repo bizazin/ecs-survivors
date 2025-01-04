@@ -5,9 +5,9 @@ namespace Code.Gameplay.Features.Statuses.Systems
 {
     public class CleanupUnappliedStatusLinkedChangesSystem : ICleanupSystem
     {
+        private readonly List<GameEntity> _buffer = new(32);
         private readonly GameContext _game;
         private readonly IGroup<GameEntity> _statuses;
-        private readonly List<GameEntity> _buffer = new(32);
 
         public CleanupUnappliedStatusLinkedChangesSystem(GameContext game)
         {
@@ -21,9 +21,9 @@ namespace Code.Gameplay.Features.Statuses.Systems
 
         public void Cleanup()
         {
-            foreach (GameEntity status in _statuses.GetEntities(_buffer))
-                foreach (GameEntity entity in _game.GetEntitiesWithApplierStatusLink(status.Id))
-                    entity.isDestructed = true;
+            foreach (var status in _statuses.GetEntities(_buffer))
+            foreach (var entity in _game.GetEntitiesWithApplierStatusLink(status.Id))
+                entity.isDestructed = true;
         }
     }
 }

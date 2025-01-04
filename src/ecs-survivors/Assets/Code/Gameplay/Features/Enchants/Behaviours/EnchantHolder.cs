@@ -5,40 +5,42 @@ using Zenject;
 
 namespace Code.Gameplay.Features.Enchants.Behaviours
 {
-  public class EnchantHolder : MonoBehaviour
-  {
-    public Transform EnchantsLayout;
-
-    private readonly List<Enchant> _enchants = new();
-    private IEnchantUIFactory _factory;
-
-    [Inject]
-    private void Construct(IEnchantUIFactory factory)
+    public class EnchantHolder : MonoBehaviour
     {
-      _factory = factory;
-    }
+        public Transform EnchantsLayout;
 
-    public void AddEnchant(EnchantTypeId enchantType)
-    {
-      if (EnchantIsAlreadyHeld(enchantType))
-        return;
-      
-      Enchant enchant = _factory.CreateEnchant(EnchantsLayout, enchantType);
-      
-      _enchants.Add(enchant);
-    }
+        private readonly List<Enchant> _enchants = new();
+        private IEnchantUIFactory _factory;
 
-    public void RemoveEnchant(EnchantTypeId enchantType)
-    {
-      Enchant enchant = _enchants.Find(enchant => enchant.Id == enchantType);
-      if (enchant != null)
-      {
-        _enchants.Remove(enchant);
-        Destroy(enchant.gameObject);
-      }
-    }
+        [Inject]
+        private void Construct(IEnchantUIFactory factory)
+        {
+            _factory = factory;
+        }
 
-    private bool EnchantIsAlreadyHeld(EnchantTypeId enchantType) => 
-      _enchants.Find(enchant => enchant.Id == enchantType) != null;
-  }
+        public void AddEnchant(EnchantTypeId enchantType)
+        {
+            if (EnchantIsAlreadyHeld(enchantType))
+                return;
+
+            var enchant = _factory.CreateEnchant(EnchantsLayout, enchantType);
+
+            _enchants.Add(enchant);
+        }
+
+        public void RemoveEnchant(EnchantTypeId enchantType)
+        {
+            var enchant = _enchants.Find(enchant => enchant.Id == enchantType);
+            if (enchant != null)
+            {
+                _enchants.Remove(enchant);
+                Destroy(enchant.gameObject);
+            }
+        }
+
+        private bool EnchantIsAlreadyHeld(EnchantTypeId enchantType)
+        {
+            return _enchants.Find(enchant => enchant.Id == enchantType) != null;
+        }
+    }
 }

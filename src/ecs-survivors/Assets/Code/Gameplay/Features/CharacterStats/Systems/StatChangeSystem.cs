@@ -3,32 +3,32 @@ using Entitas;
 
 namespace Code.Gameplay.Features.CharacterStats.Systems
 {
-  public class StatChangeSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _statOwners;
-    private readonly GameContext _game;
-
-    public StatChangeSystem(GameContext game)
+    public class StatChangeSystem : IExecuteSystem
     {
-      _game = game;
+        private readonly GameContext _game;
+        private readonly IGroup<GameEntity> _statOwners;
 
-      _statOwners = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Id,
-          GameMatcher.BaseStats,
-          GameMatcher.StatModifiers));
-    }
+        public StatChangeSystem(GameContext game)
+        {
+            _game = game;
 
-    public void Execute()
-    {
-      foreach (GameEntity statOwner in _statOwners)
-      foreach (Stats stat in statOwner.BaseStats.Keys)
-      {
-        statOwner.StatModifiers[stat] = 0;
-        
-        foreach (GameEntity statChange in _game.TargetStatChanges(stat, statOwner.Id)) 
-          statOwner.StatModifiers[stat] += statChange.EffectValue;
-      }
+            _statOwners = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.Id,
+                    GameMatcher.BaseStats,
+                    GameMatcher.StatModifiers));
+        }
+
+        public void Execute()
+        {
+            foreach (var statOwner in _statOwners)
+            foreach (var stat in statOwner.BaseStats.Keys)
+            {
+                statOwner.StatModifiers[stat] = 0;
+
+                foreach (var statChange in _game.TargetStatChanges(stat, statOwner.Id))
+                    statOwner.StatModifiers[stat] += statChange.EffectValue;
+            }
+        }
     }
-  }
 }

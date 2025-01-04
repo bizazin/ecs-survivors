@@ -8,10 +8,10 @@ namespace Code.Gameplay.Features.Enchants.UIFactories
 {
     public class EnchantUIFactory : IEnchantUIFactory
     {
-        private readonly IInstantiator _instantiator;
-        private readonly IAssetProvider _assetProvider;
-        private readonly IStaticDataService _staticData;
         private const string EnchantPrefabPath = "UI/Enchants/Enchant";
+        private readonly IAssetProvider _assetProvider;
+        private readonly IInstantiator _instantiator;
+        private readonly IStaticDataService _staticData;
 
         public EnchantUIFactory(IInstantiator instantiator, IAssetProvider assetProvider, IStaticDataService staticData)
         {
@@ -22,9 +22,11 @@ namespace Code.Gameplay.Features.Enchants.UIFactories
 
         public Enchant CreateEnchant(Transform parent, EnchantTypeId typeId)
         {
-            EnchantConfig config = _staticData.GetEnchantConfig(typeId);
-            Enchant enchant = _instantiator.InstantiatePrefabForComponent<Enchant>(_assetProvider.LoadAsset<Enchant>(EnchantPrefabPath), parent);
-            
+            var config = _staticData.GetEnchantConfig(typeId);
+            var enchant =
+                _instantiator.InstantiatePrefabForComponent<Enchant>(
+                    _assetProvider.LoadAsset<Enchant>(EnchantPrefabPath), parent);
+
             enchant.Set(config);
 
             return enchant;

@@ -3,35 +3,35 @@ using Entitas;
 
 namespace Code.Gameplay.Features.LevelUp.Systems
 {
-  public class UpgradeAbilityOnRequestSystem : IExecuteSystem
-  {
-    private readonly IAbilityUpgradeService _abilityUpgradeService;
-    private readonly IGroup<GameEntity> _levelUps;
-    private readonly IGroup<GameEntity> _abilityUpgradeRequests;
-
-    public UpgradeAbilityOnRequestSystem(GameContext game, IAbilityUpgradeService abilityUpgradeService)
+    public class UpgradeAbilityOnRequestSystem : IExecuteSystem
     {
-      _abilityUpgradeService = abilityUpgradeService;
-      
-      _levelUps = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.LevelUp));
-      _abilityUpgradeRequests = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.AbilityId,
-          GameMatcher.UpgradeRequest));
-    }
+        private readonly IGroup<GameEntity> _abilityUpgradeRequests;
+        private readonly IAbilityUpgradeService _abilityUpgradeService;
+        private readonly IGroup<GameEntity> _levelUps;
 
-    public void Execute()
-    {
-      foreach (GameEntity upgradeRequest in _abilityUpgradeRequests)
-      foreach (GameEntity levelUp in _levelUps)
-      {
-        _abilityUpgradeService.UpgradeAbility(upgradeRequest.AbilityId);
+        public UpgradeAbilityOnRequestSystem(GameContext game, IAbilityUpgradeService abilityUpgradeService)
+        {
+            _abilityUpgradeService = abilityUpgradeService;
 
-        levelUp.isProcessed = true;
-        upgradeRequest.isDestructed = true;
-      }
+            _levelUps = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.LevelUp));
+            _abilityUpgradeRequests = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.AbilityId,
+                    GameMatcher.UpgradeRequest));
+        }
+
+        public void Execute()
+        {
+            foreach (var upgradeRequest in _abilityUpgradeRequests)
+            foreach (var levelUp in _levelUps)
+            {
+                _abilityUpgradeService.UpgradeAbility(upgradeRequest.AbilityId);
+
+                levelUp.isProcessed = true;
+                upgradeRequest.isDestructed = true;
+            }
+        }
     }
-  }
 }

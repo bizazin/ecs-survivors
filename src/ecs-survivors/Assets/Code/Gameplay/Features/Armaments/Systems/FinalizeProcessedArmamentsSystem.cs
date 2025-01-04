@@ -3,25 +3,25 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Armaments.Systems
 {
-  public class FinalizeProcessedArmamentsSystem : IExecuteSystem
-  {
-    private readonly IGroup<GameEntity> _armaments;
-
-    public FinalizeProcessedArmamentsSystem(GameContext game)
+    public class FinalizeProcessedArmamentsSystem : IExecuteSystem
     {
-      _armaments = game.GetGroup(GameMatcher
-        .AllOf(
-          GameMatcher.Armament,
-          GameMatcher.Processed));
-    }
+        private readonly IGroup<GameEntity> _armaments;
 
-    public void Execute()
-    {
-      foreach (GameEntity armament in _armaments)
-      {
-        armament.RemoveTargetCollectionComponents();
-        armament.isDestructed = true;
-      }
+        public FinalizeProcessedArmamentsSystem(GameContext game)
+        {
+            _armaments = game.GetGroup(GameMatcher
+                .AllOf(
+                    GameMatcher.Armament,
+                    GameMatcher.Processed));
+        }
+
+        public void Execute()
+        {
+            foreach (var armament in _armaments)
+            {
+                armament.RemoveTargetCollectionComponents();
+                armament.isDestructed = true;
+            }
+        }
     }
-  }
 }

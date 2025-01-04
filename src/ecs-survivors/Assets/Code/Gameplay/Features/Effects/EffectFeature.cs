@@ -3,16 +3,16 @@ using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay.Features.Effects
 {
-  public sealed class EffectFeature : Feature
-  {
-    public EffectFeature(ISystemFactory systems)
+    public sealed class EffectFeature : Feature
     {
-      Add(systems.Create<RemoveEffectsWithoutTargetsSystem>());
-      
-      Add(systems.Create<ProcessDamageEffectSystem>());
-      Add(systems.Create<ProcessHealEffectSystem>());
-      
-      Add(systems.Create<CleanupProcessedEffects>());
+        public EffectFeature(ISystemFactory systems)
+        {
+            Add(systems.Create<RemoveEffectsWithoutTargetsSystem>());
+
+            Add(systems.Create<ProcessDamageEffectSystem>());
+            Add(systems.Create<ProcessHealEffectSystem>());
+
+            Add(systems.Create<CleanupProcessedEffects>());
+        }
     }
-  }
 }

@@ -4,18 +4,18 @@ using Entitas;
 
 namespace Code.Gameplay.Features.Hero.Systems
 {
-  public class InitializeHeroSystem : IInitializeSystem
-  {
-    private readonly IAbilityUpgradeService _abilityUpgradeService;
+    public class InitializeHeroSystem : IInitializeSystem
+    {
+        private readonly IAbilityUpgradeService _abilityUpgradeService;
 
-    public InitializeHeroSystem(IAbilityUpgradeService abilityUpgradeService)
-    {
-      _abilityUpgradeService = abilityUpgradeService;
+        public InitializeHeroSystem(IAbilityUpgradeService abilityUpgradeService)
+        {
+            _abilityUpgradeService = abilityUpgradeService;
+        }
+
+        public void Initialize()
+        {
+            _abilityUpgradeService.InitializeAbility(AbilityId.VegetableBolt);
+        }
     }
-    
-    public void Initialize()
-    {
-      _abilityUpgradeService.InitializeAbility(AbilityId.VegetableBolt);
-    }
-  }
 }

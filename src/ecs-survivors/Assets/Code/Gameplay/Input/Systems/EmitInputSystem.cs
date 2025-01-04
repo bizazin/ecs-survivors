@@ -4,26 +4,25 @@ using UnityEngine;
 
 namespace Code.Gameplay.Input.Systems
 {
-  public class EmitInputSystem : IExecuteSystem
-  {
-    private readonly IInputService _inputService;
-    private readonly IGroup<GameEntity> _inputs;
+    public class EmitInputSystem : IExecuteSystem
+    {
+        private readonly IGroup<GameEntity> _inputs;
+        private readonly IInputService _inputService;
 
-    public EmitInputSystem(GameContext game, IInputService inputService)
-    {
-      _inputService = inputService;
-      _inputs = game.GetGroup(GameMatcher.Input);
+        public EmitInputSystem(GameContext game, IInputService inputService)
+        {
+            _inputService = inputService;
+            _inputs = game.GetGroup(GameMatcher.Input);
+        }
+
+        public void Execute()
+        {
+            foreach (var input in _inputs)
+                if (_inputService.HasAxisInput())
+                    input.ReplaceAxisInput(new Vector2(_inputService.GetHorizontalAxis(),
+                        _inputService.GetVerticalAxis()));
+                else if (input.hasAxisInput)
+                    input.RemoveAxisInput();
+        }
     }
-    
-    public void Execute()
-    {
-      foreach (GameEntity input in _inputs)
-      {
-        if (_inputService.HasAxisInput())
-          input.ReplaceAxisInput(new Vector2(_inputService.GetHorizontalAxis(), _inputService.GetVerticalAxis()));
-        else if (input.hasAxisInput)
-          input.RemoveAxisInput();
-      }
-    }
-  }
 }
