@@ -9,6 +9,7 @@ using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
 using Code.Gameplay.Windows;
 using Code.Gameplay.Windows.Configs;
+using Code.Meta.Features.AfkGain.Configs;
 using UnityEngine;
 
 namespace Code.Gameplay.StaticData
@@ -20,6 +21,9 @@ namespace Code.Gameplay.StaticData
         private LevelUpConfig _levelUp;
         private Dictionary<LootTypeId, LootConfig> _lootById;
         private Dictionary<WindowId, GameObject> _windowPrefabsById;
+        private AfkGainConfig _afkGainConfig;
+        
+        public AfkGainConfig AfkGainConfig => _afkGainConfig;
 
         public void LoadAll()
         {
@@ -28,6 +32,7 @@ namespace Code.Gameplay.StaticData
             LoadLoot();
             LoadWindows();
             LoadLevelUpRules();
+            LoadAfkGainConfig();
         }
 
         public AbilityConfig GetAbilityConfig(AbilityId abilityId)
@@ -114,6 +119,11 @@ namespace Code.Gameplay.StaticData
         {
             _levelUp = Resources
                 .Load<LevelUpConfig>("Configs/LevelUp/levelUpConfig");
+        }
+
+        private void LoadAfkGainConfig()
+        {
+            _afkGainConfig = Resources.Load<AfkGainConfig>("Configs/AfkGainConfig");
         }
     }
 }

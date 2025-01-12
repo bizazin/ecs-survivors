@@ -6,13 +6,13 @@ namespace Code.Gameplay.Input.Systems
 {
     public class EmitInputSystem : IExecuteSystem
     {
-        private readonly IGroup<GameEntity> _inputs;
+        private readonly IGroup<InputEntity> _inputs;
         private readonly IInputService _inputService;
 
-        public EmitInputSystem(GameContext game, IInputService inputService)
+        public EmitInputSystem(InputContext input, IInputService inputService)
         {
             _inputService = inputService;
-            _inputs = game.GetGroup(GameMatcher.Input);
+            _inputs = input.GetGroup(InputMatcher.Input);
         }
 
         public void Execute()
