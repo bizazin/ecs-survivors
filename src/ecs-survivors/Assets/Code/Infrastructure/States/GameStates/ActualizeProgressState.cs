@@ -8,6 +8,7 @@ using Code.Meta;
 using Code.Meta.Features.Simulation;
 using Code.Progress.Data;
 using Code.Progress.Provider;
+using Code.Progress.SaveLoad;
 using UnityEngine;
 
 namespace Code.Infrastructure.States.GameStates
@@ -17,6 +18,7 @@ namespace Code.Infrastructure.States.GameStates
         private readonly IGameStateMachine _stateMachine;
         private readonly IProgressProvider _progressProvider;
         private readonly ISystemFactory _systemFactory;
+        private readonly ISaveLoadService _saveLoadService;
         private readonly ITimeService _time;
         private ActualizationFeature _actualizationFeature;
         private readonly TimeSpan _twoDays = TimeSpan.FromDays(2);
@@ -25,20 +27,20 @@ namespace Code.Infrastructure.States.GameStates
             IGameStateMachine stateMachine,
             IProgressProvider progressProvider,
             ISystemFactory systemFactory,
+            ISaveLoadService saveLoadService,
             ITimeService time)
         {
             _stateMachine = stateMachine;
             _progressProvider = progressProvider;
             _systemFactory = systemFactory;
+            _saveLoadService = saveLoadService;
             _time = time;
         }
 
         public void Enter()
         {
             _actualizationFeature = _systemFactory.Create<ActualizationFeature>();
-
-            _progressProvider.ProgressData.LastSimulationTickTime = _time.UtcNow - _twoDays;
-
+            
             ActualizeProgress(_progressProvider.ProgressData);
 
             _stateMachine.Enter<LoadingHomeScreenState>();
@@ -46,10 +48,6 @@ namespace Code.Infrastructure.States.GameStates
 
         private void ActualizeProgress(ProgressData data)
         {
-            CreateMetaEntity.Empty()
-                .AddGoldGainBoost(1)
-                .AddDuration((float)TimeSpan.FromDays(2).TotalSeconds);
-            
             _actualizationFeature.Initialize();
             _actualizationFeature.DeactivateReactiveSystems();
 
@@ -70,6 +68,7 @@ namespace Code.Infrastructure.States.GameStates
             }
 
             data.LastSimulationTickTime = _time.UtcNow;
+            _saveLoadService.SaveProgress();
         }
 
         private DateTime GetLimitedUntilTime(ProgressData data)

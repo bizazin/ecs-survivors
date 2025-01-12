@@ -1,31 +1,26 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
-using Code.Gameplay.Common.Time;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
-using Code.Progress.Data;
-using Code.Progress.Provider;
+using Code.Progress.SaveLoad;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class InitializeProgressState : IState
+    public class LoadProgressState : IState
     {
-        private readonly IProgressProvider _progressProvider;
+        private readonly ISaveLoadService _saveLoadService;
         private readonly IStaticDataService _staticDataService;
-        private readonly ITimeService _timeService;
         private readonly IGameStateMachine _stateMachine;
 
-        public InitializeProgressState(
+        public LoadProgressState(
             IGameStateMachine stateMachine,
-            IProgressProvider progressProvider,
-            IStaticDataService staticDataService,
-            ITimeService timeService)
+            ISaveLoadService saveLoadService,
+            IStaticDataService staticDataService)
         {
             _stateMachine = stateMachine;
-            _progressProvider = progressProvider;
+            _saveLoadService = saveLoadService;
             _staticDataService = staticDataService;
-            _timeService = timeService;
         }
 
         public void Enter()
@@ -35,22 +30,22 @@ namespace Code.Infrastructure.States.GameStates
             _stateMachine.Enter<ActualizeProgressState>();
         }
 
+        private void InitializeProgress()
+        {
+            if (_saveLoadService.HasSavedProgress)
+                _saveLoadService.LoadProgress();
+            else
+                CreateNewProgress();
+        }
+
         public void Exit()
         {
         }
 
-        private void InitializeProgress()
-        {
-            CreateNewProgress();
-        }
-
         private void CreateNewProgress()
         {
-            _progressProvider.SetProgressData(new ProgressData
-            {
-                LastSimulationTickTime = _timeService.UtcNow
-            });
-
+            _saveLoadService.CreateProgress();
+            
             CreateMetaEntity.Empty()
                 .With(x => x.isStorage = true)
                 .AddGold(0)
