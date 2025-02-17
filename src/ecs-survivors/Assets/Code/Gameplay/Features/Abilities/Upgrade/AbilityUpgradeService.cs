@@ -24,7 +24,9 @@ namespace Code.Gameplay.Features.Abilities.Upgrade
 
         public int GetAbilityLevel(AbilityId abilityId)
         {
-            return _currentAbilities.GetValueOrDefault(abilityId, 0);
+            return _currentAbilities.TryGetValue(abilityId, out var level)
+                ? level
+                : 0;
         }
 
         public void InitializeAbility(AbilityId ability)

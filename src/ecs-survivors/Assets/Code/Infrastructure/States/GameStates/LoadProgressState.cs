@@ -1,17 +1,19 @@
-using Code.Common.Entity;
+﻿using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Common.Time;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.States.StateInfrastructure;
 using Code.Infrastructure.States.StateMachine;
+using Code.Progress.Provider;
 using Code.Progress.SaveLoad;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class LoadProgressState : IState
+    public class LoadProgressState : SimpleState
     {
+        private readonly IGameStateMachine _stateMachine;
         private readonly ISaveLoadService _saveLoadService;
         private readonly IStaticDataService _staticDataService;
-        private readonly IGameStateMachine _stateMachine;
 
         public LoadProgressState(
             IGameStateMachine stateMachine,
@@ -22,8 +24,8 @@ namespace Code.Infrastructure.States.GameStates
             _saveLoadService = saveLoadService;
             _staticDataService = staticDataService;
         }
-
-        public void Enter()
+    
+        public override void Enter()
         {
             InitializeProgress();
 
@@ -32,24 +34,22 @@ namespace Code.Infrastructure.States.GameStates
 
         private void InitializeProgress()
         {
-            if (_saveLoadService.HasSavedProgress)
+            if(_saveLoadService.HasSavedProgress)
                 _saveLoadService.LoadProgress();
             else
                 CreateNewProgress();
-        }
-
-        public void Exit()
-        {
+            
         }
 
         private void CreateNewProgress()
         {
+
             _saveLoadService.CreateProgress();
-            
+
             CreateMetaEntity.Empty()
                 .With(x => x.isStorage = true)
                 .AddGold(0)
-                .AddGoldPerSecond(_staticDataService.AfkGainConfig.GoldPerSecond);
+                .AddGoldPerSecond(_staticDataService.AfkGain.GoldPerSecond);
         }
     }
 }

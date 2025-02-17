@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Code.Gameplay.Common.Time;
 using Code.Infrastructure.Serialization;
 using Code.Progress.Data;
@@ -11,18 +10,19 @@ namespace Code.Progress.SaveLoad
     public class SaveLoadService : ISaveLoadService
     {
         private const string ProgressKey = "PlayerProgress";
+
         private readonly MetaContext _metaContext;
         private readonly IProgressProvider _progressProvider;
         private readonly ITimeService _timeService;
 
-        public bool HasSavedProgress => PlayerPrefs.HasKey(ProgressKey);
-
         public SaveLoadService(MetaContext metaContext, IProgressProvider progressProvider, ITimeService timeService)
         {
+            _timeService = timeService;
             _metaContext = metaContext;
             _progressProvider = progressProvider;
-            _timeService = timeService;
         }
+
+        public bool HasSavedProgress => PlayerPrefs.HasKey(ProgressKey);
 
         public void CreateProgress()
         {
@@ -30,7 +30,6 @@ namespace Code.Progress.SaveLoad
             {
                 LastSimulationTickTime = _timeService.UtcNow
             });
-
         }
 
         public void SaveProgress()
@@ -45,7 +44,6 @@ namespace Code.Progress.SaveLoad
             HydrateProgress(PlayerPrefs.GetString(ProgressKey));
         }
 
-
         private void HydrateProgress(string serializedProgress)
         {
             _progressProvider.SetProgressData(serializedProgress.FromJson<ProgressData>());
@@ -54,13 +52,11 @@ namespace Code.Progress.SaveLoad
 
         private void HydrateMetaEntities()
         {
-            List<EntitySnapshot> snapshots = _progressProvider.EntityData.MetaEntitySnapshots;
-            foreach (EntitySnapshot snapshot in snapshots)
-            {
+            var snapshots = _progressProvider.EntityData.MetaEntitySnapshots;
+            foreach (var snapshot in snapshots)
                 _metaContext
                     .CreateEntity()
                     .HydrateWith(snapshot);
-            }
         }
 
         private void PreserveMetaEntities()

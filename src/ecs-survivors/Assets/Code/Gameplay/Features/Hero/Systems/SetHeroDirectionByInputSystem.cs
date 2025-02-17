@@ -15,8 +15,8 @@ namespace Code.Gameplay.Features.Hero.Systems
 
         public void Execute()
         {
-            foreach (InputEntity input in _inputs)
-            foreach (GameEntity hero in _heroes)
+            foreach (var input in _inputs)
+            foreach (var hero in _heroes)
             {
                 hero.isMoving = input.hasAxisInput;
 

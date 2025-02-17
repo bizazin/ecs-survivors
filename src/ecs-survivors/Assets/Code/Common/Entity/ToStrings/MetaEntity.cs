@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 using Code.Common.Entity.ToStrings;
 using Entitas;
 using UnityEngine;
 
-// ReSharper disable once CheckNamespace3
+// ReSharper disable once CheckNamespace
 public sealed partial class MetaEntity : INamedEntity
 {
     private EntityPrinter _printer;
@@ -18,7 +18,7 @@ public sealed partial class MetaEntity : INamedEntity
 
             foreach (var component in components)
                 switch (component.GetType().Name)
-                {  
+                {
                 }
         }
         catch (Exception exception)

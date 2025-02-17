@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace Code.Gameplay.Features.Abilities.Systems
+namespace Code.Gameplay.Features.Abilities.System
 {
     public class DestroyAbilityEntitiesOnUpgradeSystem : IExecuteSystem
     {

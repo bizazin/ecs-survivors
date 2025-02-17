@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Entitas;
 
 namespace Code.Meta.Features.Simulation.Systems
 {
     public class CleanupTickSystem : ICleanupSystem
     {
-        private readonly IGroup<MetaEntity> _ticks;
         private readonly List<MetaEntity> _buffer = new(1);
+        private readonly IGroup<MetaEntity> _ticks;
 
         public CleanupTickSystem(MetaContext meta)
         {
@@ -15,10 +15,7 @@ namespace Code.Meta.Features.Simulation.Systems
 
         public void Cleanup()
         {
-            foreach (MetaEntity tick in _ticks.GetEntities(_buffer))
-            {
-                tick.Destroy();
-            }
+            foreach (var tick in _ticks.GetEntities(_buffer)) tick.Destroy();
         }
     }
 }

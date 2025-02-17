@@ -2,5 +2,7 @@
 
 namespace Code.Progress
 {
-    public interface ISavedComponent : IComponent { }
+    public interface ISavedComponent : IComponent
+    {
+    }
 }

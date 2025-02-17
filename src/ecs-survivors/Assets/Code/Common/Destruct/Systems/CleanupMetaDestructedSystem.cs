@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Entitas;
 
 namespace Code.Common.Destruct.Systems
@@ -8,9 +8,9 @@ namespace Code.Common.Destruct.Systems
         private readonly List<MetaEntity> _buffer = new(16);
         private readonly IGroup<MetaEntity> _entities;
 
-        public CleanupMetaDestructedSystem(MetaContext meta)
+        public CleanupMetaDestructedSystem(MetaContext metaContext)
         {
-            _entities = meta.GetGroup(MetaMatcher.Destructed);
+            _entities = metaContext.GetGroup(MetaMatcher.Destructed);
         }
 
         public void Cleanup()

@@ -1,12 +1,11 @@
-﻿using Entitas;
-using TMPro.EditorUtilities;
+using Entitas;
 
 namespace Code.Meta.Features.Simulation.Systems
 {
     public class AfkGoldGainSystem : IExecuteSystem
     {
-        private readonly IGroup<MetaEntity> _tick;
         private readonly IGroup<MetaEntity> _storage;
+        private readonly IGroup<MetaEntity> _tick;
 
         public AfkGoldGainSystem(MetaContext meta)
         {
@@ -20,11 +19,9 @@ namespace Code.Meta.Features.Simulation.Systems
 
         public void Execute()
         {
-            foreach (MetaEntity tick in _tick)
-            foreach (MetaEntity storage in _storage)
-            {
+            foreach (var tick in _tick)
+            foreach (var storage in _storage)
                 storage.ReplaceGold(storage.Gold + tick.Tick * storage.GoldPerSecond);
-            }
         }
     }
 }

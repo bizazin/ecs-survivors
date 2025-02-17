@@ -12,5 +12,3 @@ namespace Code.Gameplay.Input.Systems
         }
     }
 }
-
-

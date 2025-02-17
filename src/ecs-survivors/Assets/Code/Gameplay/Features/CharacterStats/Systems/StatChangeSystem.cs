@@ -21,12 +21,12 @@ namespace Code.Gameplay.Features.CharacterStats.Systems
 
         public void Execute()
         {
-            foreach (var statOwner in _statOwners)
-            foreach (var stat in statOwner.BaseStats.Keys)
+            foreach (GameEntity statOwner in _statOwners)
+            foreach (Stats stat in statOwner.BaseStats.Keys)
             {
                 statOwner.StatModifiers[stat] = 0;
 
-                foreach (var statChange in _game.TargetStatChanges(stat, statOwner.Id))
+                foreach (GameEntity statChange in _game.TargetStatChanges(stat, statOwner.Id))
                     statOwner.StatModifiers[stat] += statChange.EffectValue;
             }
         }

@@ -13,72 +13,83 @@ using UnityEngine;
 
 namespace Code.Infrastructure.States.GameStates
 {
-    public class ActualizeProgressState : IState
+    public class ActualizeProgressState: SimpleState
     {
         private readonly IGameStateMachine _stateMachine;
         private readonly IProgressProvider _progressProvider;
+        private readonly ITimeService _timeService;
         private readonly ISystemFactory _systemFactory;
         private readonly ISaveLoadService _saveLoadService;
-        private readonly ITimeService _time;
+        
         private ActualizationFeature _actualizationFeature;
-        private readonly TimeSpan _twoDays = TimeSpan.FromDays(2);
+        private TimeSpan _twoDays = TimeSpan.FromDays(2);
+
 
         public ActualizeProgressState(
             IGameStateMachine stateMachine,
             IProgressProvider progressProvider,
             ISystemFactory systemFactory,
             ISaveLoadService saveLoadService,
-            ITimeService time)
+            ITimeService timeService)
         {
             _stateMachine = stateMachine;
             _progressProvider = progressProvider;
+            _timeService = timeService;
             _systemFactory = systemFactory;
             _saveLoadService = saveLoadService;
-            _time = time;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             _actualizationFeature = _systemFactory.Create<ActualizationFeature>();
-            
-            ActualizeProgress(_progressProvider.ProgressData);
 
+            //simulation
+            // _progressProvider.ProgressData.LastSimulationTickTime = _timeService.UtcNow - _twoDays;
+            
+            ActualizeProgress(_progressProvider.ProgressData);  
+            
             _stateMachine.Enter<LoadingHomeScreenState>();
         }
 
         private void ActualizeProgress(ProgressData data)
         {
+            // test booster
+            /*CreateMetaEntity.Empty()
+                .AddGoldGainBoost(1)
+                .AddDuration((float)TimeSpan.FromDays(1).TotalSeconds);*/
+            
             _actualizationFeature.Initialize();
             _actualizationFeature.DeactivateReactiveSystems();
 
-            DateTime until = GetLimitedUntilTime(data);
+            DateTime until = GetLimiedTime(data);
 
             Debug.Log($"Actualizing {(until - data.LastSimulationTickTime).TotalSeconds} seconds");
-
+            
             while (data.LastSimulationTickTime < until)
             {
-                MetaEntity tick = CreateMetaEntity
+                var tick = CreateMetaEntity
                     .Empty()
                     .AddTick(MetaConstants.SimulationTickSeconds);
-
+                
                 _actualizationFeature.Execute();
                 _actualizationFeature.Cleanup();
-
+                
                 tick.Destroy();
             }
 
-            data.LastSimulationTickTime = _time.UtcNow;
+            data.LastSimulationTickTime = _timeService.UtcNow;
+            
             _saveLoadService.SaveProgress();
         }
 
-        private DateTime GetLimitedUntilTime(ProgressData data)
+        private DateTime GetLimiedTime(ProgressData data)
         {
-            return _time.UtcNow - data.LastSimulationTickTime < _twoDays
-                ? _time.UtcNow
+            return _timeService.UtcNow - data.LastSimulationTickTime < _twoDays
+                ? _timeService.UtcNow
                 : data.LastSimulationTickTime + _twoDays;
         }
 
-        public void Exit()
+        public void BeginExit()
         {
             _actualizationFeature.Cleanup();
             _actualizationFeature.TearDown();

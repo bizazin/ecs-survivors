@@ -1,4 +1,4 @@
-﻿using Entitas;
+using Entitas;
 
 namespace Code.Meta.Features.Simulation.Systems
 {
@@ -19,8 +19,8 @@ namespace Code.Meta.Features.Simulation.Systems
 
         public void Execute()
         {
-            foreach (MetaEntity tick in _tick)
-            foreach (MetaEntity booster in _boosters)
+            foreach (var tick in _tick)
+            foreach (var booster in _boosters)
             {
                 booster.ReplaceDuration(booster.Duration - tick.Tick);
 

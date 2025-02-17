@@ -8,14 +8,15 @@ namespace Code.Progress
     {
         private readonly ISaveLoadService _saveLoadService;
 
-        public PeriodicallySaveProgressSystem(float executeIntervalSeconds, ITimeService time, ISaveLoadService saveLoadService) : base(executeIntervalSeconds, time)
+        public PeriodicallySaveProgressSystem(float executeIntervalSeconds, ITimeService time,
+            ISaveLoadService saveLoadService) : base(executeIntervalSeconds, time)
         {
             _saveLoadService = saveLoadService;
         }
 
         protected override void Execute()
         {
-            _saveLoadService.SaveProgress();            
+            _saveLoadService.SaveProgress();
         }
     }
 }

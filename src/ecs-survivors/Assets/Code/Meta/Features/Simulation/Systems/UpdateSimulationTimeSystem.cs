@@ -1,4 +1,4 @@
-﻿using Code.Progress.Provider;
+using Code.Progress.Provider;
 using Entitas;
 
 namespace Code.Meta.Features.Simulation.Systems
@@ -16,11 +16,10 @@ namespace Code.Meta.Features.Simulation.Systems
 
         public void Execute()
         {
-            foreach (MetaEntity tick in _tick)
-            {
-                _progressProvider.ProgressData.LastSimulationTickTime = 
-                    _progressProvider.ProgressData.LastSimulationTickTime.AddSeconds(tick.Tick);
-            }
+            foreach (var tick in _tick)
+                _progressProvider.ProgressData.LastSimulationTickTime =
+                    _progressProvider.ProgressData.LastSimulationTickTime
+                        .AddSeconds(tick.Tick);
         }
     }
 }

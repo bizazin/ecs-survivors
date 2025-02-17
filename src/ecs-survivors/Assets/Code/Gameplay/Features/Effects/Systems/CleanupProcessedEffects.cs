@@ -18,7 +18,8 @@ namespace Code.Gameplay.Features.Effects.Systems
 
         public void Cleanup()
         {
-            foreach (var effect in _effects.GetEntities(_buffer)) effect.Destroy();
+            foreach (var effect in _effects.GetEntities(_buffer)) 
+                effect.Destroy();
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using Code.Common.Entity.ToStrings;
-using Code.Common.Extensions;
-using Code.Gameplay.Features.Enemies;
-using Code.Gameplay.Features.Hero;
 using Entitas;
 using UnityEngine;
 

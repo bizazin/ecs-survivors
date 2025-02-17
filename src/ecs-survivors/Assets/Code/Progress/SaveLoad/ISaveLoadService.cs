@@ -1,10 +1,10 @@
-﻿namespace Code.Progress.SaveLoad
+namespace Code.Progress.SaveLoad
 {
     public interface ISaveLoadService
     {
+        bool HasSavedProgress { get; }
         void SaveProgress();
         void LoadProgress();
-        bool HasSavedProgress { get; }
         void CreateProgress();
     }
 }

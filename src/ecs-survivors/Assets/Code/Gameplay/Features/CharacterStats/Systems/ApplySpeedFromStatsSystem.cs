@@ -18,7 +18,8 @@ namespace Code.Gameplay.Features.CharacterStats.Systems
 
         public void Execute()
         {
-            foreach (var statOwner in _statOwners) statOwner.ReplaceSpeed(MoveSpeed(statOwner).ZeroIfNegative());
+            foreach (var statOwner in _statOwners) 
+                statOwner.ReplaceSpeed(MoveSpeed(statOwner).ZeroIfNegative());
         }
 
         private static float MoveSpeed(GameEntity statOwner)

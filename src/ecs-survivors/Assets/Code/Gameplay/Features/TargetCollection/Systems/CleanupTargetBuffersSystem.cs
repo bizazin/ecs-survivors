@@ -13,7 +13,8 @@ namespace Code.Gameplay.Features.TargetCollection.Systems
 
         public void Cleanup()
         {
-            foreach (var entity in _entities) entity.TargetBuffer.Clear();
+            foreach (var entity in _entities) 
+                entity.TargetBuffer.Clear();
         }
     }
 }

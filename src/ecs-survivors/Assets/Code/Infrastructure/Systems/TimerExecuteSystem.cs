@@ -1,4 +1,4 @@
-﻿using Code.Gameplay.Common.Time;
+using Code.Gameplay.Common.Time;
 using Entitas;
 
 namespace Code.Infrastructure.Systems
@@ -15,17 +15,17 @@ namespace Code.Infrastructure.Systems
             _time = time;
         }
 
-        protected abstract void Execute();
-
         void IExecuteSystem.Execute()
         {
             _timeToExecute -= _time.DeltaTime;
             if (_timeToExecute > 0)
                 return;
-            
+
             _timeToExecute = _executeIntervalSeconds;
 
             Execute();
         }
+
+        protected abstract void Execute();
     }
 }
